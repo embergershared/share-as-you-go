@@ -13,7 +13,7 @@ terraform {
     resource_group_name  = "rg-ussc-azint-notepad-tfstates"
     storage_account_name = "stnotepadtfstates"
     container_name       = "github-embergershared-notepad"
-    key                  = # "azure_0-Template"
+    key                  = # "azure_0-template"
   }
 }
 #*/

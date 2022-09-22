@@ -34,7 +34,7 @@ resource "azurerm_storage_account" "this" {
 #   / Terraform States container in Main Location
 resource "azurerm_storage_container" "this" {
   provider = azurerm.azint
-  for_each = ["github-emberger-notepad"]
+  for_each = toset(["github-embergershared-notepad"])
 
   name                  = lower(each.key)
   storage_account_name  = azurerm_storage_account.this.name

@@ -30,7 +30,7 @@ To solve this little chicken and egg issue (if one wants everything to be under 
 
 2. As soon as created, from the same machine:
 
-    - Uncomment the `tfstate_backend.tf` file (by clearing the line `10`)
+    - Uncomment the `tfstate_backend.tf` file (by removing `/*` in the line `10`)
     - Decide the authentication mechanism to use [see Backend type azurerm](https://www.terraform.io/language/settings/backends/azurerm)
 
       **WARNING**: the authentication to the backend is considered a different credential than the one used by the `provider azurerm {}` block

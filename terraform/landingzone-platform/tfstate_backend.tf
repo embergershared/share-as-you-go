@@ -13,7 +13,7 @@ terraform {
     resource_group_name  = "rg-ussc-azint-lz-platform"
     storage_account_name = "stlzplatform"
     container_name       = "tfstates"
-    key                  = "landingzone-platform"
+    key                  = "tf-landingzone-platform"
   }
 }
 #*/

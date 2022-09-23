@@ -103,6 +103,7 @@ resource "azurerm_log_analytics_workspace" "this" {
   reservation_capacity_in_gb_per_day = null #var.sku == "CapacityReservation" ? var.reservation_capacity_in_gb_per_day : null
 
   tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 #   / Application Insights
 resource "azurerm_application_insights" "this" {
@@ -122,6 +123,7 @@ resource "azurerm_application_insights" "this" {
   local_authentication_disabled         = false
 
   tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 
 #--------------------------------------------------------------
@@ -154,6 +156,7 @@ resource "azurerm_key_vault" "this" {
   }
 
   tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 #   / Assign Key Vault Administrator Role to the current SPN
 resource "azurerm_role_assignment" "ra_spn_on_kv" {
@@ -184,6 +187,7 @@ resource "azurerm_key_vault_secret" "this" {
   key_vault_id = azurerm_key_vault.this.id
 
   tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 
 #--------------------------------------------------------------
@@ -200,6 +204,7 @@ resource "azurerm_virtual_network" "this" {
   dns_servers         = var.dns_servers
 
   tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 
 #   / Create the Subnets

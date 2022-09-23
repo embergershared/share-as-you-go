@@ -11,7 +11,7 @@
 terraform {
   backend "azurerm" {
     resource_group_name  = "rg-ussc-azint-lz-platform"
-    storage_account_name = "stlzplatform"
+    storage_account_name = "stusscazintlzplatform"
     container_name       = "tfstates"
     key                  = "tf-landingzone-platform"
   }

@@ -5,4 +5,4 @@
 #--------------------------------------------------------------
 # - Terraform Variables' values
 #--------------------------------------------------------------
-resources_name_core = "ussc-azint"
+name_base = "ussc-azint-lz-platform"

@@ -3,7 +3,7 @@
 #
 
 #--------------------------------------------------------------
-#   Terraform States Resource Group
+#   Platform Landing Zone Resource Group
 #--------------------------------------------------------------
 #   / Resource Group
 resource "azurerm_resource_group" "this" {
@@ -15,9 +15,9 @@ resource "azurerm_resource_group" "this" {
 }
 
 #--------------------------------------------------------------
-#   Terraform States Storage Account
+#   Platform Landing Zone Storage Account
 #--------------------------------------------------------------
-#   / Backend data Storage with Terraform States
+#   / Storage Account
 resource "azurerm_storage_account" "this" {
   provider                 = azurerm.azint
   name                     = "stlzplatform"
@@ -27,11 +27,19 @@ resource "azurerm_storage_account" "this" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
+  allow_nested_items_to_be_public = false    #Disable anonymous public read access to containers and blobs
+  enable_https_traffic_only       = true     #Require secure transfer (HTTPS) to the storage account for REST API Operations
+  min_tls_version                 = "TLS1_2" #Configure the minimum required version of Transport Layer Security (TLS) for a storage account and require TLS Version1.2
+
+  identity {
+    type = "SystemAssigned"
+  }
+
   tags = local.base_tags
   lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 
-#   / Terraform States container in Main Location
+#   / Terraform States container
 resource "azurerm_storage_container" "this" {
   provider = azurerm.azint
   for_each = toset(["tfstates"])
@@ -39,4 +47,21 @@ resource "azurerm_storage_container" "this" {
   name                  = lower(each.key)
   storage_account_name  = azurerm_storage_account.this.name
   container_access_type = "private"
+}
+
+#   / Storage Account Networking rules
+resource "azurerm_storage_account_network_rules" "this" {
+  provider = azurerm.azint
+
+  # Prevents locking the Storage Account before all resources are created
+  depends_on = [
+    azurerm_storage_account.this,
+    azurerm_storage_container.this
+  ]
+
+  storage_account_id         = azurerm_storage_account.this.id
+  default_action             = "Deny"
+  ip_rules                   = var.network_ip_rules
+  virtual_network_subnet_ids = []
+  bypass                     = ["AzureServices"]
 }

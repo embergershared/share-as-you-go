@@ -271,4 +271,71 @@ resource "azurerm_subnet_network_security_group_association" "this" {
   network_security_group_id = azurerm_network_security_group.this[each.key].id
   subnet_id                 = azurerm_subnet.this[each.key].id
 }
+
+#--------------------------------------------------------------
+#   Platform Landing Zone Diagnostic settings
+#--------------------------------------------------------------
+#   / Gather resources in the RG
+data "azurerm_resources" "this" {
+  provider = azurerm.azint
+
+  depends_on = [
+    azurerm_subnet_network_security_group_association.this
+  ]
+
+  resource_group_name = azurerm_resource_group.this.name
+}
+#   / Generate compatible resources list
+locals {
+  resource_ids = {
+    for k, v in data.azurerm_resources.this.resources : v.id => v.name
+    if lower(v.type) != lower("microsoft.alertsmanagement/smartDetectorAlertRules")
+  }
+}
+#   / Get Diagnostics settings categories
+data "azurerm_monitor_diagnostic_categories" "this" {
+  provider = azurerm.azint
+
+  for_each = local.resource_ids
+
+  resource_id = each.key
+}
+#   / Enable the Diagnostics settings
+resource "azurerm_monitor_diagnostic_setting" "this" {
+  provider = azurerm.azint
+
+  for_each = local.resource_ids
+
+  name               = "${each.value}-diag"
+  target_resource_id = each.key
+
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
+  storage_account_id         = azurerm_storage_account.this.id
+
+  dynamic "log" {
+    for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].log_category_types
+    content {
+      category = log.value
+      enabled  = true
+
+      retention_policy {
+        enabled = true
+        days    = 7
+      }
+    }
+  }
+
+  dynamic "metric" {
+    for_each = data.azurerm_monitor_diagnostic_categories.this[each.key].metrics
+    content {
+      category = metric.value
+      enabled  = true
+
+      retention_policy {
+        enabled = true
+        days    = 7
+      }
+    }
+  }
+}
 #*/

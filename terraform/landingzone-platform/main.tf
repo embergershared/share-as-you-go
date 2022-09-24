@@ -206,17 +206,20 @@ resource "azurerm_virtual_network" "this" {
   tags = local.base_tags
   lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
-
 #   / Create the Subnets
 resource "azurerm_subnet" "this" {
   provider = azurerm.azint
+
+  depends_on = [
+    azurerm_virtual_network.this
+  ]
 
   resource_group_name  = azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
 
   for_each = var.subnets
 
-  name                                      = each.key
+  name                                      = "snet-${each.key}"
   address_prefixes                          = each.value["address_prefixes"]
   service_endpoints                         = lookup(each.value, "service_endpoints", null)
   private_endpoint_network_policies_enabled = lookup(each.value, "pe_enable", false)
@@ -235,7 +238,37 @@ resource "azurerm_subnet" "this" {
       }
     }
   }
+}
+#   / Create default NSGs for each subnets
+resource "azurerm_network_security_group" "this" {
+  provider = azurerm.azint
 
-  depends_on = [azurerm_virtual_network.this]
+  depends_on = [
+    azurerm_subnet.this
+  ]
+
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+
+  # for_each = var.subnets
+  for_each = { for k, v in azurerm_subnet.this : k => v.name }
+
+  name = lower("nsg-${each.value}")
+
+  tags = local.base_tags
+  lifecycle { ignore_changes = [tags["BuiltOn"]] }
+}
+#   / Associate the NSGs to their subnets
+resource "azurerm_subnet_network_security_group_association" "this" {
+  provider = azurerm.azint
+
+  depends_on = [
+    azurerm_network_security_group.this
+  ]
+
+  for_each = { for k, v in azurerm_network_security_group.this : k => v }
+
+  network_security_group_id = azurerm_network_security_group.this[each.key].id
+  subnet_id                 = azurerm_subnet.this[each.key].id
 }
 #*/

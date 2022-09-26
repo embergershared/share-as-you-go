@@ -131,7 +131,7 @@ resource "azurerm_role_assignment" "cluster_admin" {
 az aks get-credentials -g rg-ussc-azint-research-aks-aadrbac -n aks-aadrbac
 
 # First query promtps for Azure AD authentication with device login
-# Then kubectl commands are at all scopes are successfull:
+# Then kubectl commands that are cluster-scoped are successfull:
 kubectl get nodes
 kubectl get pods -A
 kubectl get ns
@@ -145,7 +145,7 @@ az aks get-credentials -g rg-ussc-azint-research-aks-aadrbac -n aks-aadrbac --ad
 #*/
 
 /*
-#   / Create Role Assignment for an admin in the namespace
+#   / Create Role Assignment for an admin in the namespace (and delete the Cluster Admin role assignment)
 resource "azurerm_role_assignment" "app-a_ns_admin" {
   provider = azurerm.azint
 
@@ -160,14 +160,16 @@ resource "azurerm_role_assignment" "app-a_ns_admin" {
 }
 
 /*
-# After deleting the AKS Cluster Admin role assignment, it is possible to manage the namespace with kubectl
+# It is then possible to manage the namespace's resources with kubectl
+## Get all resources in the namespace
 kubectl get all --namespace app-a
+## Create a nginx pod
 kubectl run nginx --image=nginx --restart=Never --namespace app-a
-
+## See the logs of this pod
 kubectl logs pod/nginx --namespace app-a 
 
-Note: the role assignment is not visible through the portal in the AKS IAM blade,
-but it can be seen from the user in AzureAD: https://ms.portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserProfileMenuBlade/~/SubscriptionResources/userId/<Principal Id>
+Note: the role assignment at namespace scope is not visible through the portal in the AKS IAM blade,
+but it can be seen in the user in AzureAD blade: https://ms.portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserProfileMenuBlade/~/SubscriptionResources/userId/<Principal Id>
 
 AKS AAD RBAC has the 4 following builtin roles:
 https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac#create-role-assignments-for-users-to-access-cluster

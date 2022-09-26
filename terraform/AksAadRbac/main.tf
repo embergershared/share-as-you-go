@@ -51,8 +51,10 @@ resource "azurerm_kubernetes_cluster" "this" {
     network_plugin = "azure"
   }
 
-  # RBAC and Azure AD Integration
+  # Kubernetes Authorization = RBAC
   role_based_access_control_enabled = true
+
+  # Azure AD integration + AD Managed RBAC
   azure_active_directory_role_based_access_control {
     managed                = true
     azure_rbac_enabled     = true

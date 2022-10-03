@@ -8,10 +8,12 @@
 #   / Resource Group
 resource "azurerm_resource_group" "this" {
   provider = azurerm.azint
-  name     = "rg-ussc-azint-${var.name_part1}-${var.name_part2}"
-  location = "South Central US"
-  tags     = local.base_tags
-  lifecycle { ignore_changes = [tags["BuiltOn"]] }
+
+  name     = "rg-${var.codes}-${var.base_name}-${var.suffix}"
+  location = var.location
+
+  tags = local.base_tags
+  #lifecycle { ignore_changes = [tags["RefreshedOn"]] }
 }
 
 #--------------------------------------------------------------

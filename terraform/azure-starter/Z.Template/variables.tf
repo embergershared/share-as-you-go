@@ -5,5 +5,14 @@
 #--------------------------------------------------------------
 # - Terraform Variables Declarations
 #--------------------------------------------------------------
-variable "name_part1" {}
-variable "name_part2" {}
+variable "built_with" {
+  type        = string
+  description = "Terraform version used to build these resources"
+  default     = "Terraform v1.3.0"
+}
+variable "built_by" { default = "Emmanuel" }
+variable "location" { default = "South Central US" }
+variable "codes" { default = "ussc-azint" }
+
+variable "base_name" {}
+variable "suffix" {}

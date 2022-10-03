@@ -32,7 +32,7 @@ Important notes:
 >
 >   - Names are derived from the variables: `codes`, `base_name` and `suffix` - this behavior can be changed in `main.tf`
 >   - All variables come with a `default` value - they can be overridden by setting values in `variables_values.auto.tfvars`
->   - The `"RefreshedOn"` tag is always update. It leads to always having a _detected change_ in the Infrastructure. For `development` platforms, it is convenient to uncomment (remove the starting `#`) the blocks `#lifecycle { ignore_changes = [tags["RefreshedOn"]] }` in `main.tf`. It will disable the `"RefreshedOn"` tag update at each run, so it's easy to detect _**"relevant"**_ changes
+>   - The `"RefreshedOn"` tag is always update. It leads to always having a _detected change_ in the Infrastructure. For `development` platforms, it is convenient to uncomment -removing the starting `#`- the blocks `#lifecycle { ignore_changes = [tags["RefreshedOn"]] }` in `main.tf`. It will disable the `"RefreshedOn"` tag update detected change at each run. It makes it easier to detect _**"relevant"**_ changes
 >   - The `RBAC` role `"Storage Blob Data Contributor"` is assigned to the Service Principal used by terraform on the Storage account
 >   - The Storage Account `Networking` is restricted to the Public IP Address that is used to run terraform.
 

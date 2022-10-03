@@ -26,6 +26,16 @@ To solve this little chicken and egg issue (if one wants everything to be under 
     - a storage account
     - 1/n container(s) in the storage account.
 
+Important notes:
+
+> - This is an opinionated implementation where:
+>
+>   - Names are derived from the variables: `codes`, `base_name` and `suffix` - this behavior can be changed in `main.tf`
+>   - All variables come with a `default` value - they can be overridden by setting values in `variables_values.auto.tfvars`
+>   - The `"RefreshedOn"` tag is always update. It leads to always having a detected change in the Infrastructure. For `development` platform, it is advised to uncomment (remove the starting `#`) the blocks `#lifecycle { ignore_changes = [tags["RefreshedOn"]] }` in `main.tf`. It will disable the `"RefreshedOn"` tag update at each run
+>   - The `RBAC` role `"Storage Blob Data Contributor"` is assigned to the Service Principal used by terraform on the Storage account
+>   - The Storage Account `Networking` is restricted to the Public IP Address that is used to run terraform.
+
 ## Transfer the terraform state from local to this remote backend
 
 2. As soon as created, from the same machine:
@@ -47,4 +57,5 @@ To solve this little chicken and egg issue (if one wants everything to be under 
       ![success](./2022-09-10_235403.png)
       ![state in container](./2022-09-10_235620.png)
 
-    - Delete the 2 local state files: `terraform.tfstate` & `terraform.tfstate.backup`.
+    - Delete the 2 local state files: `terraform.tfstate` & `terraform.tfstate.backup`:
+        ![delete local terraform state files](./2022-10-03_110923.png)

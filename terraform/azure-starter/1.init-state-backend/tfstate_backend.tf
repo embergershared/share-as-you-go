@@ -10,10 +10,10 @@
 /*
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-ussc-azint-notepad-tfstates"
-    storage_account_name = "stnotepadtfstates"
-    container_name       = "github-embergershared-notepad"
-    key                  = "azure_1-terraform"
+    resource_group_name  = "rg-ussc-azint-sayg-tfstates"
+    storage_account_name = "stsaygtfstates"
+    container_name       = "github-embergershared-shareasyougo"
+    key                  = "azure-starter_1-init-state-backend"
   }
 }
 #*/

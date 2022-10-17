@@ -13,7 +13,7 @@ terraform {
     resource_group_name  = "rg-ussc-azint-sayg-tfstates"
     storage_account_name = "stsaygtfstates"
     container_name       = "github-embergershared-shareasyougo"
-    key                  = #"azure-starter_Z-template"
+    key                  = "" #"azure-starter_Z-template"
   }
 }
 #*/

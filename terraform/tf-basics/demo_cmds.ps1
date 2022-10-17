@@ -4,9 +4,7 @@ terraform version
 
 # Show Service Principal used in Portal:
 #   - Service Principal references
-"https://ms.portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/cc9380e8-8ae1-410d-bc41-dde0a8f58599/isMSAApp~/false"
-#   - Subscription IAM
-"https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/resource/subscriptions/181b4f09-67a4-4baa-b5d5-f10e01dd5d3b/users"
+#   - Subscription IAM (with SPN being Owner on Subscription)
 
 
 # Show init

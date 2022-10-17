@@ -9,9 +9,9 @@ terraform {
   }
 }
 provider "azurerm" {
-  tenant_id       = "72f988bf-86f1-41af-91ab-2d7cd011db47" # "Microsoft Tenant"
-  subscription_id = "181b4f09-67a4-4baa-b5d5-f10e01dd5d3b" # "Microsoft Azure Internal Consumption"
-  client_id       = "cc9380e8-8ae1-410d-bc41-dde0a8f58599" # "sp-azint-emberger-terraform"
+  tenant_id       = "" # "Tenant"
+  subscription_id = "" # "Demo subscription"
+  client_id       = "" # "[]-terraform"
   client_secret   = var.client_secret
 
   features {}
@@ -36,8 +36,8 @@ resource "azurerm_resource_group" "this" {
   # tags = local.base_tags
 }
 
-/*
 # Locals
+/*
 locals {
   # Dates formatted
   UTC_to_TZ = "-5h"

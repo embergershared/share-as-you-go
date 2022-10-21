@@ -64,7 +64,7 @@ A Secured Service Bus will have these settings (Non-exhaustive list and always d
 
 ## Service Bus Queue parameters
 
-- Access control (IAM) configured with the Role assignments created for the consumers' apps Managed Identities. Here's an example:
+Access control (IAM) configured with the Role assignments created for the consumers' apps Managed Identities. Here's an example:
 
 <p align="center">
   <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_184714.png" alt="SbQueueRBAC"/>

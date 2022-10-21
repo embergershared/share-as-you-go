@@ -14,9 +14,8 @@ This .NET 6.0 console app is designed to validate the settings and demonstrate t
 ## Typical output
 
 The App running as a `WebJob` will log like this:
-![Logs output excerpt](https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png)
 
-<img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png" alt="Logs output excerpt" width="40%;">
+<img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png" alt="Logs output excerpt" width="60%;">
 
 ## App deployment in Azure
 

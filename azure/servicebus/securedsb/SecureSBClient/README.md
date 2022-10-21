@@ -2,6 +2,11 @@
 
 ## Overview
 
+This .NET Core 5 console app is designed to validate the settings and behavior of an Azure Service Bus deployed in a secured manner.
+It uses the Private deployment in Azure to:
+- Check it can resolve the service bus namespace. For resolution to work, Private Endpoint, Privated DNS Zones, DNS zones linking and Private DNS records must be all configured.
+- Use a Managed Identity to authenticate to the Service Bus queue and send messages. It means this MI must be have the role "Azure Service Bus Data Sender" assignment created to it at the queue scope.
+- Use a Managed Identity (can be another one) to authenticate to the Service Bus queue and receive messages. It means this MI must be have the role "Azure Service Bus Data Receiver" assignment created to it at the queue scope.
 
 ## Client deployment in Azure
 

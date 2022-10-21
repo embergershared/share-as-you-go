@@ -24,7 +24,7 @@ namespace SecureSBClient.Classes
             // Reference for authentication with Azure.Identity: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#authenticating-with-azureidentity
 
             _logger.LogInformation("Creating a ServiceBusClient to the namespace: {@sb_ns}, with MI \"{@client_id}\"", sbNamespace, clientId);
-            var fullyQualifiedNamespace = $"{sbNamespace}.{Constants.sbPublicSuffix}";
+            var fullyQualifiedNamespace = $"{sbNamespace}.{Constants.SbPublicSuffix}";
 
             try
             {

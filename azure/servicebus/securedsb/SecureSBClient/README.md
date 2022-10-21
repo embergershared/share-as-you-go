@@ -69,15 +69,15 @@ A Secured Service Bus will have these settings (Non-exhaustive list and always d
 
 ## Local development & debug
 
-Cloud Explorer had been retired in Visual Studio 2022. [Announcement](https://learn.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-resources-managing-with-cloud-explorer?view=vs-2022)
+Cloud Explorer had been retired in Visual Studio 2022 ([Announcement])(https://learn.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-resources-managing-with-cloud-explorer?view=vs-2022) and that doesn't help....'
 
 The technique I used was to create a Basic Service Bus namespace and connect to it through my development workstation.
 When the appropriate Azure Account is set in Visual Studio Tools > Options > Azure Service Authentication:
 ![RBAC for MI at queue scope](https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192514.png)
 
-the `Azure.Identity` package, without parameters (here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account described above to authenticate.
+the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account described above to authenticate.
 
-It allows to debug the client and assess the Service Bus objects operating in the code.
+It allows to debug the client and the Service Bus objects operating in the app code.
 
 
 # References

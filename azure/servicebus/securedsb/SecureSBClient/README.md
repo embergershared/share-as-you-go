@@ -2,7 +2,7 @@
 
 ## Overview
 
-This .NET Core 5 console app is designed to validate the settings and behavior of an Azure Service Bus deployed in a secured manner.
+This .NET 6.0 console app is designed to validate the settings and behavior of an Azure Service Bus deployed in a secured manner.
 It uses the Private deployment in Azure to:
 - Check it can resolve the service bus namespace. For resolution to work, Private Endpoint, Privated DNS Zones, DNS zones linking and Private DNS records must be all configured.
 - Use a Managed Identity to authenticate to the Service Bus queue and send messages. It means this MI must be have the role "Azure Service Bus Data Sender" assignment created to it at the queue scope.
@@ -22,7 +22,7 @@ This code runs as a WebJobs in an App Service with these characteristics:
 	- Deployment: Disable Continuous deployment
 	- Networking:
 		- Enable network injection: ON	
-		- VNet integration. VNet has to be in the same region
+		- VNet integration (VNet has to be in the same region)
 		- Inbound access / Enable private endpoints: OFF
 		- Outbound access / Enable VNet integration: ON / Outbound subnet: set to a subnet
 	- Set App Service Identity / System assigned to ON

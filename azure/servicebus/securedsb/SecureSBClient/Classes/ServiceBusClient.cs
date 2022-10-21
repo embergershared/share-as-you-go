@@ -11,15 +11,17 @@ namespace SecureSBClient.Classes
 {
     internal class ServiceBusClient : IServiceBusClient
     {
-
+        // Private members
         private readonly ILogger _logger;
         private Azure.Messaging.ServiceBus.ServiceBusClient? _sbClient;
 
+        // Constructor
         public ServiceBusClient(ILogger<ServiceBusClient> logger)
         {
             _logger = logger;
         }
 
+        // Interface implementation
         public bool CreateClient(string sbNamespace, string? clientId = null)
         {
             // Create a ServiceBusClient that will authenticate through Active Directory
@@ -68,6 +70,8 @@ namespace SecureSBClient.Classes
 
         public async Task<bool> SendMessageAsync(string queue, string message)
         {
+            // Ref: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#send-and-receive-a-message
+
             // create the sender
             _logger.LogInformation("Creating a ServiceBusSender to the queue: {@q_name}", queue);
             if (_sbClient != null)
@@ -98,6 +102,42 @@ namespace SecureSBClient.Classes
             {
                 _logger.LogError("Cannot send a message when ServiceBusClient is not created");
                 return false;
+            }
+        }
+
+        public async Task<ServiceBusReceivedMessage> ReceiveMessageAsync(string queue)
+        {
+            // Ref: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#send-and-receive-a-message
+
+            // create a receiver that we can use to receive the message
+            var receiver = _sbClient.CreateReceiver(queue);
+
+            try
+            {
+                _logger.LogInformation("Receiving the current FIFO message in queue: {@queue}", queue);
+
+                var receivedMessage = await receiver.ReceiveMessageAsync();
+
+                if (true /*all is good with message*/)
+                {
+                    // Complete the message
+                    await receiver.CompleteMessageAsync(receivedMessage);
+                    _logger.LogInformation("Message received and Completed in queue");
+                }
+                else
+                {
+                    // Manage other possible status for message:
+                    // - Abandon: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#abandon-a-message
+                    // - Defer: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#defer-a-message
+                    // - Dead-letter: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#dead-letter-a-message
+                }
+
+                return receivedMessage;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Receiving and Completing the message failed");
+                return await Task.FromException<ServiceBusReceivedMessage>(e);
             }
         }
     }

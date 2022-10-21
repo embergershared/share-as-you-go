@@ -69,17 +69,17 @@ namespace SecureSBClient
 
             Thread.Sleep(2000);
 
-            await ReceiveMessages(logger, serviceProvider);
+            await ReceiveMessage(logger, serviceProvider);
 
             // End of Main program
             logger.LogInformation("Ending application");
         }
 
         #region Private Methods
-        private static async Task ReceiveMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
+        private static async Task ReceiveMessage(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Use Queue messaging receiver
-            logger.LogDebug("Launching a Queue Message receiver");
+            logger.LogDebug("Getting the next FIFO message from the queue");
 
             var receiver = serviceProvider.GetService<IServiceBusClient>();
 
@@ -91,13 +91,20 @@ namespace SecureSBClient
                 {
                     logger.LogTrace("ServiceBusClient created");
 
-                    // Sending a message
-                    logger.LogTrace("Receiving all messages from the queue");
+                    // Receiving a message
+                    logger.LogTrace("Receiving 1 message from the queue");
 
+                    if (_sbQueue != null)
+                    {
+                        var receivedMessage = await receiver.ReceiveMessageAsync(_sbQueue);
 
-                    logger.LogTrace("Received all messages from the queue");
+                        logger.LogInformation("Message received body: {@body}", receivedMessage.Body.ToString());
 
-                    await receiver.DisposeClientAsync();
+                        logger.LogTrace("Received the message from the queue");
+
+                        logger.LogTrace("Disposing client");
+                        await receiver.DisposeClientAsync();
+                    }
                 }
                 else
                 {
@@ -109,7 +116,7 @@ namespace SecureSBClient
                 logger.LogError("Impossible to get a IServiceBusClient instance");
             }
 
-            logger.LogDebug("Queue Message receiver finished");
+            logger.LogDebug("Message from the queue received");
         }
 
         private static async Task SendMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
@@ -127,7 +134,9 @@ namespace SecureSBClient
                 {
                     logger.LogTrace("ServiceBusClient created");
 
-                    // Sending a message
+                    // Sending 10 messages
+                    // IMPORTANT: There are 2 better ways to send several messages.
+                    // Use one of them for production: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#sending-a-batch-of-messages
                     logger.LogTrace("Sending 10 messages to the queue");
 
                     for (var i = 1; i < 11; i++)
@@ -148,6 +157,7 @@ namespace SecureSBClient
 
                     logger.LogTrace("10 messages sent to the queue");
 
+                    logger.LogTrace("Disposing client");
                     await sender.DisposeClientAsync();
                 }
                 else

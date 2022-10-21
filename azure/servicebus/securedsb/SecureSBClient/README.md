@@ -73,7 +73,7 @@ Cloud Explorer had been retired in Visual Studio 2022 ([Announcement])(https://l
 
 The technique I used was to create a Basic Service Bus namespace and connect to it through my development workstation.
 When the appropriate Azure Account is set in Visual Studio Tools > Options > Azure Service Authentication:
-![RBAC for MI at queue scope](https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192514.png)
+![RBAC for MI at queue scope](https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192515.png)
 
 the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account described above to authenticate.
 

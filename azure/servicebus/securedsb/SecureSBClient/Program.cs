@@ -16,6 +16,7 @@ namespace SecureSBClient
 {
     internal class Program
     {
+        private static bool _testPrivateLink = true;
         private static string? _sbNamespace;
         private static string? _sbQueue;
         private static string? _senderClientId;
@@ -63,7 +64,7 @@ namespace SecureSBClient
             // Main program tasks sequences
             SetVariablesValues(logger, config);
 
-            await CheckDnsResolution(logger, serviceProvider);
+            if (!await CheckDnsResolution(logger, serviceProvider)) return;
 
             await SendMessages(logger, serviceProvider);
 
@@ -79,7 +80,7 @@ namespace SecureSBClient
         private static async Task ReceiveMessage(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Use Queue messaging receiver
-            logger.LogDebug("Getting the next FIFO message from the queue");
+            logger.LogDebug("Receiving the next FIFO message from the Queue");
 
             var receiver = serviceProvider.GetService<IServiceBusClient>();
 
@@ -98,9 +99,14 @@ namespace SecureSBClient
                     {
                         var receivedMessage = await receiver.ReceiveMessageAsync(_sbQueue);
 
-                        logger.LogInformation("Message received body: {@body}", receivedMessage.Body.ToString());
-
-                        logger.LogTrace("Received the message from the queue");
+                        if (receivedMessage != null)
+                        {
+                            logger.LogInformation("Received message body: {@body}", receivedMessage.Body.ToString());
+                        }
+                        else
+                        {
+                            logger.LogWarning("No message received from the queue: {@q_name}", _sbQueue);
+                        }
 
                         logger.LogTrace("Disposing client");
                         await receiver.DisposeClientAsync();
@@ -116,13 +122,13 @@ namespace SecureSBClient
                 logger.LogError("Impossible to get a IServiceBusClient instance");
             }
 
-            logger.LogDebug("Message from the queue received");
+            logger.LogDebug("Received the next FIFO message from the Queue");
         }
 
         private static async Task SendMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Use Queue messaging sender
-            logger.LogDebug("Launching a Queue Message sender");
+            logger.LogDebug("Sending a message to the Service Bus Queue");
 
             var sender = serviceProvider.GetService<IServiceBusClient>();
 
@@ -170,10 +176,10 @@ namespace SecureSBClient
                 logger.LogError("Impossible to get a IServiceBusClient instance");
             }
 
-            logger.LogDebug("Queue Message sender finished");
+            logger.LogDebug("Sent a message to the Service Bus Queue");
         }
 
-        private static async Task CheckDnsResolution(ILogger<Program> logger, ServiceProvider serviceProvider)
+        private static async Task<bool> CheckDnsResolution(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Check DNS resolution to Service Bus
             logger.LogDebug("Launching DNS Resolution");
@@ -182,21 +188,40 @@ namespace SecureSBClient
 
             if (resolver != null)
             {
-                await resolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
-                await resolver.ResolveAsync(
-                    $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
+                var success = await resolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
+                if (_testPrivateLink)
+                {
+                    success = success && await resolver.ResolveAsync(
+                        $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
+                }
+
+                if (success)
+                {
+                    logger.LogDebug("DNS Resolution succeeded");
+                    return true;
+                }
+                else
+                {
+                    logger.LogError("DNS Resolution failed");
+                    return false;
+                }
             }
             else
             {
                 logger.LogError("Impossible to get a DnsResolver");
+                return false;
             }
-
-            logger.LogDebug("DNS Resolution done");
         }
 
         private static void SetVariablesValues(ILogger<Program> logger, IConfigurationRoot config)
         {
             logger.LogDebug("Getting values from configuration");
+            
+            if (config.GetChildren().Any(item => item.Key == "TEST_PRIVATE_LINK"))
+            {
+                _testPrivateLink = config.GetValue<bool>("TEST_PRIVATE_LINK");
+            }
+
             _sbNamespace = config.GetValue<string>("SERVICEBUS_NS_NAME");
             _sbQueue = config.GetValue<string>("QUEUE_NAME");
             _senderClientId = config.GetValue<string>("SENDER_CLIENT_ID");

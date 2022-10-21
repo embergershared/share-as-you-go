@@ -2,12 +2,12 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using DnsClient;
+using Microsoft.Extensions.Logging;
+using SecureSBClient.Interfaces;
+
 namespace SecureSBClient.Classes
 {
-    using DnsClient;
-    using Microsoft.Extensions.Logging;
-    using Interfaces;
-
     internal class DnsResolver : IDnsResolver
     {
         private readonly ILogger _logger;

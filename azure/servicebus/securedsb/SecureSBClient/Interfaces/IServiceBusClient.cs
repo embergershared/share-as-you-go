@@ -3,7 +3,6 @@
 // </copyright>
 
 using Azure.Messaging.ServiceBus;
-using System.Globalization;
 
 namespace SecureSBClient.Interfaces
 {
@@ -11,9 +10,7 @@ namespace SecureSBClient.Interfaces
     {
         bool CreateClient(string sbNamespace, string? clientId = null);
         Task DisposeClientAsync();
-
         Task<bool> SendMessageAsync(string queue, string message);
-
-        Task<ServiceBusReceivedMessage> ReceiveMessageAsync(string queue);
+        Task<ServiceBusReceivedMessage?> ReceiveMessageAsync(string queue);
     }
 }

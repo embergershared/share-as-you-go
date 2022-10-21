@@ -1,4 +1,4 @@
-﻿// <copyright file="Classes.cs" company="PlaceholderCompany">
+﻿// <copyright file="DnsResolver.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 

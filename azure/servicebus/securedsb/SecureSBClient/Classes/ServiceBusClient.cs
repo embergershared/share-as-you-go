@@ -1,17 +1,21 @@
-﻿using Azure.Identity;
+﻿// <copyright file="ServiceBusClient.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using SecureSBClient.Interfaces;
 
 namespace SecureSBClient.Classes
 {
-    internal class QueueMessageSender : IQueueMessageSender
+    internal class ServiceBusClient : IServiceBusClient
     {
 
         private readonly ILogger _logger;
-        private ServiceBusClient? _sbClient;
+        private Azure.Messaging.ServiceBus.ServiceBusClient? _sbClient;
 
-        public QueueMessageSender(ILogger<QueueMessageSender> logger)
+        public ServiceBusClient(ILogger<ServiceBusClient> logger)
         {
             _logger = logger;
         }
@@ -23,6 +27,8 @@ namespace SecureSBClient.Classes
             // Reference for the ServiceBusClient: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet
             // Reference for authentication with Azure.Identity: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#authenticating-with-azureidentity
 
+            // See Client lifetime recommendations for wider use out of this POC: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#client-lifetime
+
             _logger.LogInformation("Creating a ServiceBusClient to the namespace: {@sb_ns}, with MI \"{@client_id}\"", sbNamespace, clientId);
             var fullyQualifiedNamespace = $"{sbNamespace}.{Constants.SbPublicSuffix}";
 
@@ -31,14 +37,14 @@ namespace SecureSBClient.Classes
                 if (string.IsNullOrEmpty(clientId))
                 {
                     // Code for system-assigned managed identity:
-                    _sbClient = new ServiceBusClient(fullyQualifiedNamespace, new DefaultAzureCredential());
+                    _sbClient = new Azure.Messaging.ServiceBus.ServiceBusClient(fullyQualifiedNamespace, new DefaultAzureCredential());
                 }
                 else
                 {
                     // Code for user-assigned managed identity:
                     var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
                         { ManagedIdentityClientId = clientId });
-                    _sbClient = new ServiceBusClient(fullyQualifiedNamespace, credential);
+                    _sbClient = new Azure.Messaging.ServiceBus.ServiceBusClient(fullyQualifiedNamespace, credential);
                 }
 
                 _logger.LogInformation($"ServiceBusClient created");
@@ -48,6 +54,15 @@ namespace SecureSBClient.Classes
             {
                 _logger.LogError(e, $"ServiceBusClient creation failed");
                 return false;
+            }
+        }
+
+        public async Task DisposeClientAsync()
+        {
+            _logger.LogDebug("Disposing the ServiceBusClient");
+            if (_sbClient != null)
+            {
+                await _sbClient.DisposeAsync();
             }
         }
 

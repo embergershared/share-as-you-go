@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SecureSBClient.Classes;
@@ -15,10 +19,11 @@ namespace SecureSBClient
         private static string? _sbNamespace;
         private static string? _sbQueue;
         private static string? _senderClientId;
-        //private static string? _receiverClientId;
+        private static string? _receiverClientId;
 
         private static async Task Main()
         {
+            #region Initialization
             // Configuration
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -42,97 +47,150 @@ namespace SecureSBClient
             ConfigureServices(serviceCollection);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // Start execution
+            // Get a Logger for Program
             var logger = serviceProvider.GetService<ILogger<Program>>();
 
-            if (logger != null)
+            if (logger == null)
             {
-                logger.LogInformation("Starting application");
+                Console.WriteLine("Could not create a logger. Program execution stopped");
+                return;
+            }
+            #endregion
 
-                logger.LogDebug("Getting values from configuration");
-                _sbNamespace = config.GetValue<string>("SERVICEBUS_NS_NAME");
-                _sbQueue = config.GetValue<string>("QUEUE_NAME"); 
-                _senderClientId = config.GetValue<string>("SENDER_CLIENT_ID");
-                //_receiverClientId = config.GetValue<string>("RECEIVER_CLIENT_ID");
+            // Execution Start
+            logger.LogInformation("Starting application");
 
-                // Check DNS resolution to Service Bus
-                logger.LogDebug("Launching DNS Resolution");
+            // Main program tasks sequences
+            SetVariablesValues(logger, config);
 
-                var resolver = serviceProvider.GetService<IDnsResolver>();
+            await CheckDnsResolution(logger, serviceProvider);
 
-                if (resolver != null)
+            await SendMessages(logger, serviceProvider);
+
+            Thread.Sleep(2000);
+
+            await ReceiveMessages(logger, serviceProvider);
+
+            // End of Main program
+            logger.LogInformation("Ending application");
+        }
+
+        #region Private Methods
+        private static async Task ReceiveMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
+        {
+            // Use Queue messaging receiver
+            logger.LogDebug("Launching a Queue Message receiver");
+
+            var receiver = serviceProvider.GetService<IServiceBusClient>();
+
+            if (receiver != null)
+            {
+                logger.LogTrace("Got a IServiceBusClient instance");
+
+                if (_sbNamespace != null && receiver.CreateClient(_sbNamespace, _receiverClientId))
                 {
-                    await resolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
-                    await resolver.ResolveAsync(
-                        $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
+                    logger.LogTrace("ServiceBusClient created");
+
+                    // Sending a message
+                    logger.LogTrace("Receiving all messages from the queue");
+
+
+                    logger.LogTrace("Received all messages from the queue");
+
+                    await receiver.DisposeClientAsync();
                 }
                 else
                 {
-                    logger.LogError("Impossible to get a DnsResolver");
+                    logger.LogError("Impossible to create a ServiceBusClient");
                 }
+            }
+            else
+            {
+                logger.LogError("Impossible to get a IServiceBusClient instance");
+            }
 
-                logger.LogDebug("DNS Resolution done");
+            logger.LogDebug("Queue Message receiver finished");
+        }
 
-                // Use Queue messaging sender
-                logger.LogDebug("Launching Queue Message sender");
+        private static async Task SendMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
+        {
+            // Use Queue messaging sender
+            logger.LogDebug("Launching a Queue Message sender");
 
-                var sender = serviceProvider.GetService<IQueueMessageSender>();
+            var sender = serviceProvider.GetService<IServiceBusClient>();
 
-                if (sender != null)
+            if (sender != null)
+            {
+                logger.LogTrace("Got a IServiceBusClient instance");
+
+                if (_sbNamespace != null && sender.CreateClient(_sbNamespace, _senderClientId))
                 {
-                    logger.LogTrace("Got a IQueueMessageSender instance");
+                    logger.LogTrace("ServiceBusClient created");
 
-                    if (sender.CreateClient(_sbNamespace, _senderClientId))
+                    // Sending a message
+                    logger.LogTrace("Sending 10 messages to the queue");
+
+                    for (var i = 1; i < 11; i++)
                     {
-                        logger.LogTrace("Got a ServiceBus Client");
+                        logger.LogTrace("Sending message #{@num} to the queue", i);
 
-                        // We have a client to ServiceBus
+                        var messageContent = $"Message #{i} sent at {DateTime.Now:MM/dd/yyyy hh:mm tt}";
 
-                        // Sending a message
-                        logger.LogTrace("Sending 10 messages to the queue");
-
-                        for (var i = 1; i < 11; i++)
+                        var result = _sbQueue != null && await sender.SendMessageAsync(_sbQueue, messageContent);
+                        if (result)
                         {
-                            logger.LogTrace("Sending message #{@num} to the queue", i);
-
-                            var messageContent = $"Message #{i} sent at {DateTime.Now:MM/dd/yyyy hh:mm tt}";
-
-                            var result = await sender.SendMessageAsync(_sbQueue, messageContent);
-                            if (result)
-                            {
-                                logger.LogInformation("Message sent");
-                            }
-
-                            // Wait 1 second
-                            Thread.Sleep(1000);
+                            logger.LogInformation("Message sent");
                         }
 
-                        logger.LogTrace("10 messages sent to the queue");
+                        // Wait 1 second
+                        Thread.Sleep(1000);
                     }
-                    else
-                    {
-                        logger.LogError("Impossible to get a ServiceBusClient");
-                    }
+
+                    logger.LogTrace("10 messages sent to the queue");
+
+                    await sender.DisposeClientAsync();
                 }
                 else
                 {
-                    logger.LogError("Impossible to get a QueueMessageSender");
+                    logger.LogError("Impossible to get a ServiceBusClient");
                 }
-
-                logger.LogDebug("Queue Message sender finished");
-
-                Thread.Sleep(2000);
-
-                // Use Queue messaging receiver
-                logger.LogDebug("Launching Queue Message receiver");
-
-                //var receiver = serviceProvider.GetService<IQueueMessageReceiver>();
-
-
-                logger.LogDebug("Queue Message receiver finished");
-
-                logger.LogInformation("Ending application");
             }
+            else
+            {
+                logger.LogError("Impossible to get a IServiceBusClient instance");
+            }
+
+            logger.LogDebug("Queue Message sender finished");
+        }
+
+        private static async Task CheckDnsResolution(ILogger<Program> logger, ServiceProvider serviceProvider)
+        {
+            // Check DNS resolution to Service Bus
+            logger.LogDebug("Launching DNS Resolution");
+
+            var resolver = serviceProvider.GetService<IDnsResolver>();
+
+            if (resolver != null)
+            {
+                await resolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
+                await resolver.ResolveAsync(
+                    $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
+            }
+            else
+            {
+                logger.LogError("Impossible to get a DnsResolver");
+            }
+
+            logger.LogDebug("DNS Resolution done");
+        }
+
+        private static void SetVariablesValues(ILogger<Program> logger, IConfigurationRoot config)
+        {
+            logger.LogDebug("Getting values from configuration");
+            _sbNamespace = config.GetValue<string>("SERVICEBUS_NS_NAME");
+            _sbQueue = config.GetValue<string>("QUEUE_NAME");
+            _senderClientId = config.GetValue<string>("SENDER_CLIENT_ID");
+            _receiverClientId = config.GetValue<string>("RECEIVER_CLIENT_ID");
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
@@ -145,7 +203,8 @@ namespace SecureSBClient
             // Dependency Injection
             serviceCollection
                 .AddSingleton<IDnsResolver, DnsResolver>()
-                .AddSingleton<IQueueMessageSender, QueueMessageSender>();
+                .AddSingleton<IServiceBusClient, ServiceBusClient>();
         }
+        #endregion
     }
 }

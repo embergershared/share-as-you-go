@@ -5,7 +5,7 @@
 
 ## Client deployment in Azure
 
-This code runs as a WebJob in an App Service with these characteristics:
+This code runs as a WebJobs in an App Service with these characteristics:
 - App Service Plan:
 	- OS: Windows
 	- SKU: P1v2

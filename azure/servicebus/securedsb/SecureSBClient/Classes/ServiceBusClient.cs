@@ -146,5 +146,51 @@ namespace SecureSBClient.Classes
                 return await Task.FromException<ServiceBusReceivedMessage?>(e);
             }
         }
+
+        public async Task<bool> DeleteAllMessagesAsync(string queue)
+        {
+            // Initialization
+            var maxMsg = 50;
+            var maxWait = new TimeSpan(0, 0, 15);
+            var messagesToDelete = true;
+
+            // create a receiver that we can use to receive the message
+            if (_sbClient == null)
+            {
+                _logger.LogError("Cannot receive a message when ServiceBusClient is not created");
+                return false;
+            }
+
+            _logger.LogInformation("Creating a ServiceBusReceiver for the queue: {@q_name}", queue);
+            var receiver = _sbClient.CreateReceiver(queue);
+
+            _logger.LogDebug("Retrieving messages by batches of {@max_msg}, with a {@max_wait} timeout", maxMsg, maxWait);
+
+            while (messagesToDelete)
+            {
+                var receivedMessages = await receiver.ReceiveMessagesAsync(maxMessages: maxMsg, maxWaitTime: maxWait);
+
+                if (receivedMessages.Any())
+                {
+                    _logger.LogInformation("Received {@count} messages to delete", receivedMessages.Count);
+
+                    foreach (var receivedMessage in receivedMessages)
+                    {
+                        // get the message body as a string
+                        var body = receivedMessage.Body.ToString();
+                        _logger.LogInformation("Deleting message: {@body}", body);
+
+                        await receiver.CompleteMessageAsync(receivedMessage);
+                    }
+                    _logger.LogDebug("Deleted the retrieved messages");
+                }
+                else
+                {
+                    messagesToDelete = false;
+                }
+            }
+
+            return true;
+        }
     }
 }

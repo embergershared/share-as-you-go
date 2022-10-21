@@ -12,5 +12,6 @@ namespace SecureSBClient.Interfaces
         Task DisposeClientAsync();
         Task<bool> SendMessageAsync(string queue, string message);
         Task<ServiceBusReceivedMessage?> ReceiveMessageAsync(string queue);
+        Task<bool> DeleteAllMessagesAsync(string queue);
     }
 }

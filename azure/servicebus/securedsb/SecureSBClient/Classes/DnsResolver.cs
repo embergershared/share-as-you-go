@@ -10,20 +10,17 @@ namespace SecureSBClient.Classes
 {
     internal class DnsResolver : IDnsResolver
     {
+        // Private members
         private readonly ILogger _logger;
 
+        // Constructor
         public DnsResolver(ILogger<DnsResolver> logger)
         {
             _logger = logger;
         }
 
+        // Interface implementation
         public async Task<bool> ResolveAsync(string fqdn)
-        {
-            _logger.LogInformation("{@method} invoked with: {@parameter}", "ResolveAsync()", fqdn);
-            return await DnsResolveAsync(fqdn);
-        }
-
-        private async Task<bool> DnsResolveAsync(string fqdn)
         {
             _logger.LogInformation("Resolving: {@fqdn}", fqdn);
             var lookup = new LookupClient();

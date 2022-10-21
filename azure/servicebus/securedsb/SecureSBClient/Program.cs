@@ -72,8 +72,46 @@ namespace SecureSBClient
 
             await ReceiveMessage(logger, serviceProvider);
 
+            await DeleteAllMessages(logger, serviceProvider);
+
             // End of Main program
             logger.LogInformation("Ending application");
+        }
+
+        private static async Task DeleteAllMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
+        {
+            // Use Queue messaging receiver
+            logger.LogDebug("Delete all messages from the Queue");
+
+            var receiver = serviceProvider.GetService<IServiceBusClient>();
+
+            if (receiver != null)
+            {
+                logger.LogTrace("Got a IServiceBusClient instance");
+
+                if (_sbNamespace != null && receiver.CreateClient(_sbNamespace, _receiverClientId))
+                {
+                    logger.LogTrace("ServiceBusClient created");
+
+                    if (_sbQueue != null)
+                    {
+                        await receiver.DeleteAllMessagesAsync(_sbQueue);
+
+                        logger.LogTrace("Disposing client");
+                        await receiver.DisposeClientAsync();
+                    }
+                }
+                else
+                {
+                    logger.LogError("Impossible to create a ServiceBusClient");
+                }
+            }
+            else
+            {
+                logger.LogError("Impossible to get a IServiceBusClient instance");
+            }
+
+            logger.LogDebug("Deleted all messages from the Queue");
         }
 
         #region Private Methods

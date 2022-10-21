@@ -2,10 +2,9 @@
 
 ## Overview
 
-<p>This .NET 6.0 console app is designed to validate the settings and demonstrate the use of an Azure Service Bus Premium deployed in a secured manner.<br>
-It leverages the Private deployment in Azure to:</p>
+This .NET 6.0 console app is designed to validate the settings and demonstrate the use of an Azure Service Bus Premium deployed in a secured manner. It leverages Azure security features from a the Webjob running the app to:
 
-- Check it can resolve the service bus namespace:
+- Check it can resolve the Service Bus namespace:
 	- For resolution to work: VNet, Private Endpoint, Privated DNS Zones, DNS zones linking and Private DNS records must be all configured correctly between the `WebJob App Service` and the `Service Bus`.
 - Use a Managed Identity to authenticate to the Service Bus queue and send messages:
 	- It means the used Managed Identity must be assigned the role "Azure Service Bus Data Sender" at the queue scope.

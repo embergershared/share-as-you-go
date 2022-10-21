@@ -93,13 +93,25 @@ namespace SecureSBClient
                         // We have a client to ServiceBus
 
                         // Sending a message
-                        logger.LogTrace("Sending a message");
+                        logger.LogTrace("Sending 10 messages to the queue");
 
-                        var result = await sender.SendMessageAsync(_sbQueue, $"Hello world at {DateTime.Now:MM/dd/yyyy hh:mm tt}");
-                        if (result)
+                        for (var i = 1; i < 11; i++)
                         {
-                            logger.LogInformation("Message sent");
+                            logger.LogTrace("Sending message #{@num} to the queue", i);
+
+                            var messageContent = $"Message #{i} sent at {DateTime.Now:MM/dd/yyyy hh:mm tt}";
+
+                            var result = await sender.SendMessageAsync(_sbQueue, messageContent);
+                            if (result)
+                            {
+                                logger.LogInformation("Message sent");
+                            }
+
+                            // Wait 1 second
+                            Thread.Sleep(1000);
                         }
+
+                        logger.LogTrace("10 messages sent to the queue");
                     }
                     else
                     {

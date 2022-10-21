@@ -65,7 +65,10 @@ A Secured Service Bus will have these settings (Non-exhaustive list and always d
 ## Service Bus Queue parameters
 
 - Access control (IAM) configured with the Role assignments created for the consumers' apps Managed Identities. Here's an example:
-![RBAC for MI at queue scope](https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_184714.png)
+
+<p align="center">
+  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_184714.png" alt="SbQueueRBAC"/>
+</p>
 
 ## Local development & debug
 
@@ -75,7 +78,7 @@ The technique I used was to create a Basic Service Bus namespace and connect to 
 When the appropriate Azure Account is set in Visual Studio Tools > Options > Azure Service Authentication:
 
 <p align="center">
-  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192515.png" alt="Sublime's custom image"/>
+  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192515.png" alt="VsToolsOptions"/>
 </p>
 
 the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account described above to authenticate.

@@ -38,10 +38,10 @@ This code runs as a WebJob in an App Service set with these characteristics:
 ## Configuration
 
 The 4 following Keys are expected in the App Service Configuration:
-| Name | Value | Description |
+| Name | Value | Comments |
 |------|-------|-------------|
-| QUEUE_NAME | Name of the queue to use in the Service Bus namespace | As we secure at the queue level, the queue name must be known by the App to connect to the queue |
 | SERVICEBUS_NS_NAME | The Service Bus namespace name | The name without the full FQDN |
+| QUEUE_NAME | Name of the queue to use in the Service Bus namespace | As we secure at the queue level, the queue name must be known by the App to connect to the queue |
 | SENDER_CLIENT_ID | The Client ID of the Managed Identity authorized to SEND messages to the queue through RBAC | Can be any Client ID in the same Azure AD tenant |
 | RECEIVER_CLIENT_ID | The Client ID of the Managed Identity authorized to RECEIVE messages to the queue through RBAC | Can be any Client ID in the same Azure AD tenant |
 

@@ -34,6 +34,9 @@ namespace SecureSBClient.Classes
             _logger.LogInformation("Creating a ServiceBusClient to the namespace: {@sb_ns}, with MI \"{@client_id}\"", sbNamespace, clientId);
             var fullyQualifiedNamespace = $"{sbNamespace}.{Constants.SbPublicSuffix}";
 
+            // Enforce TLS 1.2 to connect to Service Bus
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
             try
             {
                 if (string.IsNullOrEmpty(clientId))
@@ -168,8 +171,10 @@ namespace SecureSBClient.Classes
 
             while (messagesToDelete)
             {
+                _logger.LogDebug("Retrieving messages");
                 var receivedMessages = await receiver.ReceiveMessagesAsync(maxMessages: maxMsg, maxWaitTime: maxWait);
 
+                _logger.LogDebug("Processing response");
                 if (receivedMessages.Any())
                 {
                     _logger.LogInformation("Received {@count} messages to delete", receivedMessages.Count);

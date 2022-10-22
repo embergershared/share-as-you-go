@@ -24,10 +24,11 @@ The App running as a `WebJob` will log like this:
 This app uses these NuGet packages:
 | Package | Version | Usage |
 |------|-------|-------------|
+| Azure.Identity | v1.7.0 | Provides authentication context for Azure |
 | Azure.Messaging.ServiceBus | v7.11.0 | Allows to connect, send and receive messages to/from an Azure Service Bus |
 | DnsClient | v1.6.1 | Provide DNS resolution and queries |
-| Microsoft.Extensions.Configuration | mutiple NuGet | Provides configuration building and management |
-| Microsoft.Extensions.Logging | multiple NuGet | Provides .NET logging |
+| Microsoft.Extensions.Configuration.* | v6.0.1 + multiple Packages | Provides configuration building and management |
+| Microsoft.Extensions.Logging.* | v6.0.0 + multiple Packages | Provides .NET logging |
 | Serilog | v2.12.0 | Provides logging enhancement |
 | StyleCop.Analyzers | v1.1.118 | Enhance code |
 

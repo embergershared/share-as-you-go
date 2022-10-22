@@ -30,7 +30,7 @@ This app uses these NuGet packages:
 | Microsoft.Extensions.Configuration.* | v6.0.1 + multiple Packages | Provides configuration building and management |
 | Microsoft.Extensions.Logging.* | v6.0.0 + multiple Packages | Provides .NET logging |
 | Serilog.* | v2.12.0 + multiple Packages | Provides logging enhancement |
-| StyleCop.Analyzers | v1.1.118 | Enhance code |
+| StyleCop.Analyzers | v1.1.118 | Code enhancing and suggestions |
 
 ## App deployment in Azure
 

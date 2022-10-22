@@ -19,6 +19,18 @@ The App running as a `WebJob` will log like this:
 	<img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png" alt="Logs output excerpt" width="70%;">
 </p>
 
+## Main packages
+
+This app uses these NuGet packages:
+| Package | Version | Usage |
+|------|-------|-------------|
+| Azure.Messaging.ServiceBus | v7.11.0 | Allows to connect, send and receive messages to/from an Azure Service Bus |
+| DnsClient | v1.6.1 | Provide DNS resolution and queries |
+| Microsoft.Extensions.Configuration | mutiple NuGet | Provides configuration building and management |
+| Microsoft.Extensions.Logging | multiple NuGet | Provides .NET logging |
+| Serilog | v2.12.0 | Provides logging enhancement |
+| StyleCop.Analyzers | v1.1.118 | Enhance code |
+
 ## App deployment in Azure
 
 This code runs as a WebJob in an App Service set with these characteristics:

@@ -21,7 +21,7 @@ provider "azurerm" {
 variable "rg_name" {
   type        = string
   description = "Name of the Resource Group"
-  # default     = "default-name"
+  default     = "default-name"
 }
 variable "client_secret" {
   type = any
@@ -29,11 +29,11 @@ variable "client_secret" {
 
 # Resources
 resource "azurerm_resource_group" "this" {
-  name = var.rg_name
-  # name     = "rg-${var.rg_name}"
+  # name = var.rg_name
+  name     = "rg-${var.rg_name}"
   location = "eastus2"
 
-  # tags = local.base_tags
+  tags = local.base_tags
 }
 
 # Locals

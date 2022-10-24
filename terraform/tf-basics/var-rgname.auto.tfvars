@@ -1,1 +1,1 @@
-# rg_name = "demo-csasouth-appinov"
+rg_name = "demo-csasouth-appinov"

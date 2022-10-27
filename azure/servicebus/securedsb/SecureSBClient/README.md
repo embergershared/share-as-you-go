@@ -2,24 +2,29 @@
 
 ## Overview
 
-This .NET 6.0 console app is designed to validate the settings and demonstrate the use of an Azure Service Bus Premium deployed in a secured manner. It leverages Azure security features from a the WebJob running the app to:
+This .NET 6.0 console app is designed to prove the concept of leveraging an Azure Service Bus Premium deployed in a secured manner, from an App Service, also deployed securely with VNet integration, using Azure RBAC to control queue access and permissions.
+
+The `sender` and `receiver` objects in the App Service WebJob access 1 specific queue with the credentials from the `Managed identity(/ies)` assigned to the App Service.
+
+The App does:
 
 - Check it can resolve the Service Bus namespace:
-  - For resolution to work: VNet, Private Endpoint, Private DNS Zones, DNS zones linking and Private DNS records must be all configured correctly between the `WebJob App Service` and the `Service Bus`.
-- Use a Managed Identity to authenticate to the Service Bus queue and send messages:
-  - It means the used Managed Identity must be assigned the role "Azure Service Bus Data Sender" at the queue scope.
-- Use a Managed Identity (can be another one) to authenticate to the Service Bus queue and receive messages:
+  - For resolution to work: VNet, Private Endpoint, Private DNS Zones, DNS zones linking and Private DNS records must all be configured correctly between the `WebJob App Service` and the `Service Bus`.
+- Use a Managed Identity to authenticate to the Service Bus queue and **send** messages:
+  - It means the Managed Identity used must be assigned the role "Azure Service Bus Data Sender" at the queue scope.
+
+- Use a Managed Identity (can be another one) to authenticate to the Service Bus queue and **receive** messages:
   - It means the used Managed Identity must be assigned the role "Azure Service Bus Data Receiver" at the queue scope.
 
 ## Typical output
 
-The App running as a `WebJob` will log like this:
+The App running as a `WebJob` log will look like this:
 
 <p align="center">
   <img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png" alt="Logs output excerpt" width="70%;">
 </p>
 
-## Main packages
+## Main NuGet packages used
 
 This app uses these NuGet packages:
 | Packages | Version | Usage |
@@ -29,7 +34,7 @@ This app uses these NuGet packages:
 | DnsClient | v1.6.1 | Provide DNS resolution and queries |
 | Microsoft.Extensions.Configuration.* | v6.0.1 + multiple Packages | Provides configuration building and management |
 | Microsoft.Extensions.Logging.* | v6.0.0 + multiple Packages | Provides .NET logging |
-| Serilog.* | v2.12.0 + multiple Packages | Provides logging enhancement |
+| Serilog.* | v2.12.0 + multiple Packages | Provides logging with SeriLog |
 | StyleCop.Analyzers | v1.1.118 | Code enhancing and suggestions |
 
 ## App deployment in Azure
@@ -46,7 +51,7 @@ This code runs as a WebJob in an App Service set with these characteristics:
   - OS: Windows
   - Deployment: Disable Continuous deployment
   - Networking:
-    - Enable network injection: ON	
+    - Enable network injection: ON
     - VNet integration (VNet has to be in the same region)
     - Inbound access / Enable private endpoints: OFF
     - Outbound access / Enable VNet integration: ON / Outbound subnet: set to a subnet
@@ -63,14 +68,14 @@ The 4 following Keys are expected in the App Service Configuration:
 |------|-------|-------------|
 | SERVICEBUS_NS_NAME | The Service Bus namespace name | The name without the full FQDN |
 | QUEUE_NAME | Name of the queue to use in the Service Bus namespace | As we secure at the queue level, the queue name must be known by the App to connect to the queue |
-| SENDER_CLIENT_ID | The Client ID of the Managed Identity authorized to SEND messages to the queue through RBAC | Can be any Client ID in the same Azure AD tenant |
-| RECEIVER_CLIENT_ID | The Client ID of the Managed Identity authorized to RECEIVE messages to the queue through RBAC | Can be any Client ID in the same Azure AD tenant |
+| SENDER_CLIENT_ID | The Client ID of the Managed Identity authorized to SEND messages to the queue through RBAC | CIf null or empty, the system-managed identity will be used |
+| RECEIVER_CLIENT_ID | The Client ID of the Managed Identity authorized to RECEIVE messages to the queue through RBAC | If null or empty, the system-managed identity will be used |
 
 ## Service Bus Namespace parameters
 
 A Secured Service Bus will have these settings (Non-exhaustive list and always dependant of the context):
 
-- Pricing tier: `Premium`, to:
+- Pricing tier `Premium`, to:
   - [Allow access to Azure Service Bus namespace via private endpoints](https://learn.microsoft.com/en-us/azure/service-bus-messaging/private-link-service)
   - [Allow access to Azure Service Bus namespace from specific virtual networks](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-service-endpoints)
   - [Use Customer-managed keys for data at rest encryption](https://learn.microsoft.com/en-us/azure/service-bus-messaging/configure-customer-managed-key)
@@ -89,16 +94,17 @@ Access control (IAM) configured with the Role assignments created for the consum
 
 ## Local development & debug
 
-Cloud Explorer had been retired in Visual Studio 2022 ([Announcement])(https://learn.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-resources-managing-with-cloud-explorer?view=vs-2022) and that doesn't help....'
+Cloud Explorer had been retired in Visual Studio 2022 ([Announcement](https://learn.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-resources-managing-with-cloud-explorer?view=vs-2022)) and that doesn't help...
 
 The technique I used was to create a Basic Service Bus namespace and connect to it through my development workstation.
+
 When the appropriate Azure Account is set in Visual Studio Tools > Options > Azure Service Authentication:
 
 <p align="center">
   <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192515.png" alt="VsToolsOptions"/>
 </p>
 
-the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account described above to authenticate.
+the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account linked to your Visual Studio to authenticate.
 
 It allows to debug the client and the Service Bus objects operating in the app code.
 

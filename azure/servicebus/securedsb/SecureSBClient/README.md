@@ -68,7 +68,7 @@ The 4 following Keys are expected in the App Service Configuration:
 |------|-------|-------------|
 | SERVICEBUS_NS_NAME | The Service Bus namespace name | The name without the full FQDN |
 | QUEUE_NAME | Name of the queue to use in the Service Bus namespace | As we secure at the queue level, the queue name must be known by the App to connect to the queue |
-| SENDER_CLIENT_ID | The Client ID of the Managed Identity authorized to SEND messages to the queue through RBAC | CIf null or empty, the system-managed identity will be used |
+| SENDER_CLIENT_ID | The Client ID of the Managed Identity authorized to SEND messages to the queue through RBAC | If null or empty, the system-managed identity will be used |
 | RECEIVER_CLIENT_ID | The Client ID of the Managed Identity authorized to RECEIVE messages to the queue through RBAC | If null or empty, the system-managed identity will be used |
 
 ## Service Bus Namespace parameters

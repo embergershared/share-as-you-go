@@ -1,6 +1,6 @@
 ﻿namespace ClientConsoleAppV2.Interfaces
 {
-    internal interface IConsoleExecute
+    internal interface IConsole
     {
         Task ExecuteAsync();
     }

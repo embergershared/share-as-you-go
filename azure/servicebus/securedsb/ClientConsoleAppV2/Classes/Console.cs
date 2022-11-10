@@ -1,4 +1,4 @@
-﻿// <copyright file="ConsoleExecute.cs" company="PlaceholderCompany">
+﻿// <copyright file="Console.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -9,9 +9,9 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientConsoleAppV2.Classes
 {
-    internal class ConsoleExecute : IConsoleExecute
+    internal class Console : IConsole
     {
-        private readonly ILogger<ConsoleExecute> _logger;
+        private readonly ILogger<Console> _logger;
         private readonly IConfiguration _config;
         private readonly IServiceProvider _serviceProvider;
 
@@ -22,8 +22,8 @@ namespace ClientConsoleAppV2.Classes
         private static string? _receiverClientId;
 
 
-        public ConsoleExecute(
-            ILogger<ConsoleExecute> logger,
+        public Console(
+            ILogger<Console> logger,
             IConfiguration config,
             IServiceProvider serviceProvider
             )

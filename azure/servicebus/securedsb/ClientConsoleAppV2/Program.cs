@@ -3,6 +3,7 @@ using ClientConsoleAppV2.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Console = ClientConsoleAppV2.Classes.Console;
 
 namespace ClientConsoleAppV2
 {
@@ -18,8 +19,8 @@ namespace ClientConsoleAppV2
             var logger = host.Services.GetRequiredService<ILogger<Program>>();
             logger.LogInformation("Program started");
             
-            var consoleExecuteInstance = host.Services.GetRequiredService<IConsoleExecute>();
-            await consoleExecuteInstance.ExecuteAsync();
+            var consoleInstance = host.Services.GetRequiredService<IConsole>();
+            await consoleInstance.ExecuteAsync();
 
             logger.LogInformation("Program finished");
         }
@@ -30,7 +31,7 @@ namespace ClientConsoleAppV2
                 .ConfigureServices((_, services) =>
                 {
                     services
-                        .AddTransient<IConsoleExecute, ConsoleExecute>()
+                        .AddTransient<IConsole, Console>()
                         .AddSingleton<IDnsResolver, DnsResolver>()
                         .AddSingleton<IServiceBusClient, ServiceBusClient>();
                 })

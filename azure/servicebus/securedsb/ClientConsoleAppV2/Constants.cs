@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace SecureSBClient
+namespace ClientConsoleAppV2
 {
     internal static class Constants
     {

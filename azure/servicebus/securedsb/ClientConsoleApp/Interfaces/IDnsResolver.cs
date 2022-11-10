@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace SecureSBClient.Interfaces
+namespace ClientConsoleApp.Interfaces
 {
     internal interface IDnsResolver
     {

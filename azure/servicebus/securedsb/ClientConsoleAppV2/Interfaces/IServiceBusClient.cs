@@ -4,7 +4,7 @@
 
 using Azure.Messaging.ServiceBus;
 
-namespace SecureSBClient.Interfaces
+namespace ClientConsoleAppV2.Interfaces
 {
     internal interface IServiceBusClient
     {

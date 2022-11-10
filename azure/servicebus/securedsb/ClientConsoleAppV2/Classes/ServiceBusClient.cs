@@ -4,10 +4,10 @@
 
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
+using ClientConsoleAppV2.Interfaces;
 using Microsoft.Extensions.Logging;
-using SecureSBClient.Interfaces;
 
-namespace SecureSBClient.Classes
+namespace ClientConsoleAppV2.Classes
 {
     internal class ServiceBusClient : IServiceBusClient
     {
@@ -48,7 +48,7 @@ namespace SecureSBClient.Classes
                 {
                     // Code for user-assigned managed identity:
                     var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
-                        { ManagedIdentityClientId = clientId });
+                    { ManagedIdentityClientId = clientId });
                     _sbClient = new Azure.Messaging.ServiceBus.ServiceBusClient(fullyQualifiedNamespace, credential);
                 }
 

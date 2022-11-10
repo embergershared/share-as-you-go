@@ -2,11 +2,11 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using ClientConsoleApp.Interfaces;
 using DnsClient;
 using Microsoft.Extensions.Logging;
-using SecureSBClient.Interfaces;
 
-namespace SecureSBClient.Classes
+namespace ClientConsoleApp.Classes
 {
     internal class DnsResolver : IDnsResolver
     {

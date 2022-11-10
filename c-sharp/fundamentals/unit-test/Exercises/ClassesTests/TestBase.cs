@@ -1,4 +1,7 @@
-﻿namespace ClassesTests
+﻿using System;
+using System.IO;
+
+namespace ClassesTests
 {
     public class TestBase
     {

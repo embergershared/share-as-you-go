@@ -1,4 +1,7 @@
-﻿namespace ClassesLibrary
+﻿using System;
+using System.IO;
+
+namespace ClassesLibrary
 {
     public class FileProcess
     {

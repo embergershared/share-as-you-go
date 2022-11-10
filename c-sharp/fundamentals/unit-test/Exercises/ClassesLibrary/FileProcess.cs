@@ -1,4 +1,4 @@
-﻿namespace Exercises
+﻿namespace ClassesLibrary
 {
     public class FileProcess
     {

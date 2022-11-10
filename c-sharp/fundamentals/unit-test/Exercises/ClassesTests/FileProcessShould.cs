@@ -3,16 +3,23 @@ using ClassesLibrary;
 namespace ClassesTests
 {
     [TestClass]
-    public class FileProcessShould
+    public class FileProcessShould : TestBase
     {
+        private const string BadFileName = @"C:\Windows\bogus.exc";
+
+        #region Tests methods
         [TestMethod]
-        public void FileExists_FileNameExists_ReturnsBool()
+        public void FileExists_FileNameDoesExist_ReturnsBool()
         {
             // Arrange
             var fp = new FileProcess();
+            SetGoodFileName();
+            EnsureGoodFileExists();
 
             // Act
-            var actual = fp.FileExists(@"C:\Windows\explorer.exe");
+            TestContext?.WriteLine($"Checking file: {GoodFileName}");
+            var actual = GoodFileName != null && fp.FileExists(GoodFileName);
+            DeleteGoodFile();
 
             // Assert
             Assert.IsTrue(actual);
@@ -25,7 +32,7 @@ namespace ClassesTests
             var fp = new FileProcess();
 
             // Act
-            var actual = fp.FileExists(@"C:\Windows\bogus.exc");
+            var actual = fp.FileExists(BadFileName);
 
             // Assert
             Assert.IsFalse(actual);
@@ -39,7 +46,7 @@ namespace ClassesTests
             var fp = new FileProcess();
 
             // Act
-            var actual = fp.FileExists("");
+            fp.FileExists("");
 
             // Assert
         }
@@ -53,7 +60,7 @@ namespace ClassesTests
             // Act
             try
             {
-                var actual = fp.FileExists("");
+                fp.FileExists("");
             }
             catch (ArgumentNullException)
             {
@@ -64,5 +71,6 @@ namespace ClassesTests
             // Test failed
             Assert.Fail("Call to FileExists did NOT throw an ArgumentNullException");
         }
+        #endregion
     }
 }

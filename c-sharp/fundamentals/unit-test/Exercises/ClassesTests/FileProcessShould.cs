@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using ClassesLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,6 +9,19 @@ namespace ClassesTests
     public class FileProcessShould : TestBase
     {
         private const string BadFileName = @"C:\Windows\bogus.exc";
+
+        [ClassInitialize()]
+        public static void ClassInitialize(TestContext context)
+        {
+            // TODO: Initialize stuff for all tests in this class
+            context.WriteLine($"In ClassInitialize() method of Class: {MethodBase.GetCurrentMethod().DeclaringType.Name}");
+        }
+
+        [ClassCleanup()]
+        public static void ClassCleanup()
+        {
+            // TODO: Cleanup after this class tests
+        }
 
         #region Tests methods
         [TestMethod]

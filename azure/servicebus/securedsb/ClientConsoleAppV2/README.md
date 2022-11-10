@@ -21,7 +21,7 @@ The App does:
 The App running as a `WebJob` log will look like this:
 
 <p align="center">
-  <img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_190655.png" alt="Logs output excerpt" width="70%;">
+  <img src="https://github.com/embergershared/share-as-you-go/raw/main/azure/servicebus/securedsb/ClientConsoleAppV2/img/2022-10-21_190655.png" alt="Logs output excerpt" width="70%;">
 </p>
 
 ## Main NuGet packages used
@@ -88,7 +88,7 @@ A Secured Service Bus will have these settings (Non-exhaustive list and always d
 Access control (IAM) configured with the Role assignments created for the consumers' apps Managed Identities. Here's an example:
 
 <p align="center">
-  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_184714.png" alt="SbQueueRBAC"/>
+  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/ClientConsoleAppV2/img/2022-10-21_184714.png" alt="SbQueueRBAC"/>
 </p>
 
 ## Local development & debug
@@ -100,7 +100,7 @@ The technique I used was to create a Basic Service Bus namespace and connect to 
 When the appropriate Azure Account is set in Visual Studio Tools > Options > Azure Service Authentication:
 
 <p align="center">
-  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/SecureSBClient/img/2022-10-21_192515.png" alt="VsToolsOptions"/>
+  <img src="https://github.com/embergershared/share-as-you-go/blob/main/azure/servicebus/securedsb/ClientConsoleAppV2/img/2022-10-21_192515.png" alt="VsToolsOptions"/>
 </p>
 
 the `Azure.Identity` package, without parameters (meaning here with `SENDER_CLIENT_ID` & `RECEIVER_CLIENT_ID` left empty), will use the account linked to your Visual Studio to authenticate.

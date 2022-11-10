@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClassesTests
@@ -38,5 +39,27 @@ namespace ClassesTests
             }
         }
 
+
+        // Using Description Attribute
+        protected void WriteDescription(Type type)
+        {
+            if (TestContext != null)
+            {
+                var testName = TestContext.TestName;
+                if (testName != null)
+                {
+                    var method = type.GetMethod(testName);
+                    if (method != null)
+                    {
+                        // Check for a description attribute
+                        var descAttribute = method.GetCustomAttribute<DescriptionAttribute>();
+                        if (descAttribute != null)
+                        {
+                            TestContext.WriteLine($"Test description: {descAttribute.Description}");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

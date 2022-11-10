@@ -32,6 +32,8 @@ namespace ClassesTests
                 SetGoodFileName();
                 EnsureGoodFileExists();
             }
+
+            WriteDescription(GetType());
         }
 
         [TestCleanup]
@@ -48,6 +50,7 @@ namespace ClassesTests
 
         #region Tests methods
         [TestMethod]
+        [Description("Check if the file exists.")]
         public void FileExists_FileNameDoesExist_ReturnsBool()
         {
             TestContext?.WriteLine("In FileExists_FileNameDoesExist_ReturnsBool() method");
@@ -64,6 +67,7 @@ namespace ClassesTests
         }
 
         [TestMethod]
+        [Description("Check if the file does not exist.")]
         public void FileExists_FileNameDoesNotExist_ReturnsBool()
         {
             // Arrange
@@ -78,6 +82,7 @@ namespace ClassesTests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
+        [Description("Check for a thrown ArgumentNullException using ExpectedException.")]
         public void FileExists_FileNameIsNullOrEmptyUsingAttribute_ThrowException()
         {
             // Arrange
@@ -90,6 +95,7 @@ namespace ClassesTests
         }
 
         [TestMethod]
+        [Description("Check for a thrown ArgumentNullException using try-catch.")]
         public void FileExists_FileNameIsNullOrEmptyUsingTryCatch_ThrowException()
         {
             // Arrange

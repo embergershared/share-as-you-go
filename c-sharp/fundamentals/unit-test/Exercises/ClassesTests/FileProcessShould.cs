@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using ClassesLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +13,7 @@ namespace ClassesTests
         public static void ClassInitialize(TestContext context)
         {
             // TODO: Initialize stuff for all tests in this class
-            context.WriteLine($"In ClassInitialize() method of Class: {MethodBase.GetCurrentMethod().DeclaringType.Name}");
+            context.WriteLine($"In ClassInitialize() method of Class: FileProcessShould");
         }
 
         [ClassCleanup()]
@@ -23,19 +22,42 @@ namespace ClassesTests
             // TODO: Cleanup after this class tests
         }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            TestContext?.WriteLine("In TestInitialize() method");
+
+            if (TestContext != null && TestContext.TestName.StartsWith("FileExists_FileNameDoesExist"))
+            {
+                SetGoodFileName();
+                EnsureGoodFileExists();
+            }
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            TestContext?.WriteLine("In TestCleanup() method");
+
+            if (TestContext != null && TestContext.TestName.StartsWith("FileExists_FileNameDoesExist"))
+            {
+                DeleteGoodFile();
+            }
+        }
+
+
         #region Tests methods
         [TestMethod]
         public void FileExists_FileNameDoesExist_ReturnsBool()
         {
+            TestContext?.WriteLine("In FileExists_FileNameDoesExist_ReturnsBool() method");
+
             // Arrange
             var fp = new FileProcess();
-            SetGoodFileName();
-            EnsureGoodFileExists();
 
             // Act
-            TestContext?.WriteLine($"Checking file: {GoodFileName}");
+            TestContext?.WriteLine($"Asserting FileExists for file: {GoodFileName}");
             var actual = GoodFileName != null && fp.FileExists(GoodFileName);
-            DeleteGoodFile();
 
             // Assert
             Assert.IsTrue(actual);

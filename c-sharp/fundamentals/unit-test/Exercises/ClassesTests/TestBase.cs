@@ -23,6 +23,8 @@ namespace ClassesTests
             if (!string.IsNullOrEmpty(GoodFileName))
             {
                 // Create the file
+                TestContext?.WriteLine($"Creating file: {GoodFileName}");
+
                 File.AppendAllText(GoodFileName, "A line in the file");
             }
         }
@@ -30,6 +32,8 @@ namespace ClassesTests
         {
             if (File.Exists(GoodFileName))
             {
+                TestContext?.WriteLine($"Deleting file: {GoodFileName}");
+
                 File.Delete(GoodFileName);
             }
         }

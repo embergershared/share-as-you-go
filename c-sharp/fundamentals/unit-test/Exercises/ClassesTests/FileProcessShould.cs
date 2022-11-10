@@ -1,5 +1,6 @@
 using System;
 using ClassesLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClassesTests
 {

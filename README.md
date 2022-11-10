@@ -1,7 +1,9 @@
 # Share as you go repository
 
-From Proof Of Concepts, to customers' questions or internal work that can be publicly shared, this repository has it, for everyone's reuse.
+## Overview
 
-# DISCLAIMER
+From Proof Of Concepts, customers' questions to internal work that can be shared publicly , this repository has it, for everyone's reuse.
 
-None of this code is to be taken as-is for any projects. Use for inspiration and fun, nothing else.
+## DISCLAIMER
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

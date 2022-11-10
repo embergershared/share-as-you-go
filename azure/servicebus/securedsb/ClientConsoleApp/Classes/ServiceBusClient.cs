@@ -14,10 +14,10 @@
 
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
+using ClientConsoleApp.Interfaces;
 using Microsoft.Extensions.Logging;
-using SecureSBClient.Interfaces;
 
-namespace SecureSBClient.Classes
+namespace ClientConsoleApp.Classes
 {
     internal class ServiceBusClient : IServiceBusClient
     {

@@ -1,4 +1,4 @@
-﻿// <copyright file="Constants.cs" company="PlaceholderCompany">
+﻿// <copyright file="IDnsResolver.cs" company="PlaceholderCompany">
 //
 // DISCLAIMER
 //
@@ -12,11 +12,10 @@
 //
 // </copyright>
 
-namespace SecureSBClient
+namespace ClientConsoleApp.Interfaces
 {
-    internal static class Constants
+    internal interface IDnsResolver
     {
-        internal const string SbPublicSuffix = "servicebus.windows.net";
-        internal const string SbPrivateSuffix = "privatelink.servicebus.windows.net";
+        Task<bool> ResolveAsync(string fqdn);
     }
 }

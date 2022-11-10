@@ -12,17 +12,17 @@
 //
 // </copyright>
 
+using ClientConsoleApp.Classes;
+using ClientConsoleApp.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SecureSBClient.Classes;
-using SecureSBClient.Interfaces;
-using Serilog;
-using Serilog.Events;
-using Serilog.Exceptions;
-using Serilog.Sinks.SystemConsole.Themes;
+//using Serilog;
+//using Serilog.Events;
+//using Serilog.Exceptions;
+//using Serilog.Sinks.SystemConsole.Themes;
 
-namespace SecureSBClient
+namespace ClientConsoleApp
 {
     internal class Program
     {
@@ -32,7 +32,7 @@ namespace SecureSBClient
         private static string? _senderClientId;
         private static string? _receiverClientId;
 
-        private static async Task Main()
+        private static async Task Main(string[] args)
         {
             #region Initialization
             // Configuration
@@ -40,26 +40,41 @@ namespace SecureSBClient
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
+                .AddCommandLine(args)
                 .Build();
 
-            // Serilog Logger configuration
-            var outputTemplate =
-                "[{Timestamp:HH:mm:ss.fff} {Level:u3}] ({SourceContext}.{Method}) {Message:lj}{NewLine}{Exception}";
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .Enrich.FromLogContext()
-                .Enrich.WithExceptionDetails()
-                //.WriteTo.Console(theme: AnsiConsoleTheme.Sixteen)
-                .WriteTo.Console(LogEventLevel.Verbose, outputTemplate, theme: AnsiConsoleTheme.Sixteen)
-                .CreateLogger();
+            // .NET Logging
+            using ILoggerFactory loggerFactory =
+                LoggerFactory.Create(builder =>
+                    builder.AddSimpleConsole(options =>
+                    {
+                        options.IncludeScopes = true;
+                        options.SingleLine = true;
+                        options.TimestampFormat = "HH:mm:ss ";
+                    }));
+
+            ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
+
+            //// Serilog Logger configuration
+            //var outputTemplate =
+            //    "[{Timestamp:HH:mm:ss.fff} {Level:u3}] ({SourceContext}.{Method}) {Message:lj}{NewLine}{Exception}";
+            //Log.Logger = new LoggerConfiguration()
+            //    .MinimumLevel.Verbose()
+            //    .Enrich.FromLogContext()
+            //    .Enrich.WithExceptionDetails()
+            //    //.WriteTo.Console(theme: AnsiConsoleTheme.Sixteen)
+            //    .WriteTo.Console(LogEventLevel.Verbose, outputTemplate, theme: AnsiConsoleTheme.Sixteen)
+            //    .WriteTo.AzureAnalytics(workspaceId: config.GetValue<string>("LAW_ID"),
+            //        authenticationId: config.GetValue<string>("LAW_KEY"))
+            //    .CreateLogger();
 
             // Services Collection
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // Get a Logger for Program
-            var logger = serviceProvider.GetService<ILogger<Program>>();
+            //// Get a Logger for Program
+            //var logger = serviceProvider.GetService<ILogger<Program>>();
 
             if (logger == null)
             {
@@ -80,14 +95,15 @@ namespace SecureSBClient
 
             Thread.Sleep(2000);
 
-            await ReceiveMessage(logger, serviceProvider);
+            //await ReceiveMessage(logger, serviceProvider);
 
-            await DeleteAllMessages(logger, serviceProvider);
+            //await DeleteAllMessages(logger, serviceProvider);
 
             // End of Main program
             logger.LogInformation("Ending application");
         }
 
+        #region Private Methods
         private static async Task DeleteAllMessages(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Use Queue messaging receiver
@@ -124,7 +140,6 @@ namespace SecureSBClient
             logger.LogDebug("Deleted all messages from the Queue");
         }
 
-        #region Private Methods
         private static async Task ReceiveMessage(ILogger<Program> logger, ServiceProvider serviceProvider)
         {
             // Use Queue messaging receiver
@@ -279,9 +294,13 @@ namespace SecureSBClient
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
             // Logging
-            serviceCollection
-                // Serilog logging
-                .AddLogging(configure => configure.AddSerilog());
+            //serviceCollection
+            //    // Serilog logging
+            //    .AddLogging(configure => configure.AddSerilog());
+            //var serviceProvider = serviceCollection.BuildServiceProvider();
+            //var logger = serviceProvider.GetService<ILogger<AnyClass>>();
+            serviceCollection.AddSingleton(typeof(ILogger), logger);
+
 
             // Dependency Injection
             serviceCollection

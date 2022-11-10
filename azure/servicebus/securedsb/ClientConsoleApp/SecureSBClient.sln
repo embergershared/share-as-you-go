@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureSBClient", "SecureSBClient.csproj", "{AE4F442F-ED91-4418-83AD-E1C77493A515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientConsoleApp", "ClientConsoleApp.csproj", "{AE4F442F-ED91-4418-83AD-E1C77493A515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsoleAppV2", "..\ClientConsoleAppV2\ClientConsoleAppV2.csproj", "{E1C9D610-733B-4F4E-8B97-BA0686245C04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AE4F442F-ED91-4418-83AD-E1C77493A515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE4F442F-ED91-4418-83AD-E1C77493A515}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE4F442F-ED91-4418-83AD-E1C77493A515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C9D610-733B-4F4E-8B97-BA0686245C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C9D610-733B-4F4E-8B97-BA0686245C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C9D610-733B-4F4E-8B97-BA0686245C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C9D610-733B-4F4E-8B97-BA0686245C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

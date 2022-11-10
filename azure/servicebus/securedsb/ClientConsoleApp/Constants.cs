@@ -1,4 +1,4 @@
-﻿// <copyright file="IServiceBusClient.cs" company="PlaceholderCompany">
+﻿// <copyright file="Constants.cs" company="PlaceholderCompany">
 //
 // DISCLAIMER
 //
@@ -12,16 +12,11 @@
 //
 // </copyright>
 
-using Azure.Messaging.ServiceBus;
-
-namespace SecureSBClient.Interfaces
+namespace ClientConsoleApp
 {
-    internal interface IServiceBusClient
+    internal static class Constants
     {
-        bool CreateClient(string sbNamespace, string? clientId = null);
-        Task DisposeClientAsync();
-        Task<bool> SendMessageAsync(string queue, string message);
-        Task<ServiceBusReceivedMessage?> ReceiveMessageAsync(string queue);
-        Task<bool> DeleteAllMessagesAsync(string queue);
+        internal const string SbPublicSuffix = "servicebus.windows.net";
+        internal const string SbPrivateSuffix = "privatelink.servicebus.windows.net";
     }
 }

@@ -16,7 +16,7 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 <!-- ![TDD Life cycle](../.Images/TDDLifeCycle.png | width=50%) -->
 <p align="center">
-  <img width=30% src="../.Images/TDDLifeCycle.png">
+  <img width=40% src="../.Images/TDDLifeCycle.png">
 </p>
 
 ## What are the benefits of this approach?

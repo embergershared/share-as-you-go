@@ -24,29 +24,29 @@ Functional testing describes what the feature does. We have implemented feature 
 
 1. Open the Bookings Project in Visual Studio. Go to  `SmartHotel360.Registration.Web.Tests-> BusinessLogicUnitTests->BookingsManagerTest.cs` in Solution Explorer View.
     
-    ![Unit Test File Location](../../.Images/Bookings/Booking-CQ-VisualStudio-FileLocationUT.png =20%x)  
+    ![Unit Test File Location](../../.Images/Bookings/Booking-CQ-VisualStudio-FileLocationUT.png)  
 
 2. **DELETE** the **Ignore** Attribute as highlighted in the image on line no 12.
     
-    ![Remove Ignore Attribute in Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-RemoveIgnore.png =30%x)
+    ![Remove Ignore Attribute in Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-RemoveIgnore.png)
 
 3. To open Test Explorer Window, Go to `Test->Windows->Test Explorer`.  
     
-    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png =30%x)
+    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png)
 
 4. Right click and build the **SmartHotel360.Registration.Web.Tests** as shown below in Solution Explorer.
 
-    ![Build Web.Tests Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-BuildTests.png =30%x)
+    ![Build Web.Tests Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-BuildTests.png)
     
 5. To run the unit Test in BookingsManagerTest Class, Go to Test Explorer Window and right click on **SmartHotel360.Registration.Web.Tests.BusinessLogicUnitTests** -> **Run Selected Tests**.
 
-    ![Booking Run Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow-RunTests-Option.png =60%x)
+    ![Booking Run Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow-RunTests-Option.png)
 
   ><span style="color: black; background: lemonchiffon">**NOTE**  Ignore the tests not run as shown in the image. It shows the tests are being skipped just for informational purpose.
 
 6. Once the test ran successfully, you should be able to see the status as **Green** for all the seven unit tests.
   
-     ![Booking Successful Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-SuccessfulTest.png =40%x)
+     ![Booking Successful Unit Test](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-SuccessfulTest.png)
 
 ### Exercise 2 : Enabling Functional BDD Test in the Bookings Source Code
 
@@ -56,7 +56,7 @@ In this exercise we are using BDD approach for integration tests or other types 
 
 1. Go to `SmartHotel360.Registration.Web.Integration.Tests -> GuestSearchByNameSteps.cs` step definition file. **Uncomment** the commented section under red-boxed section.
 
-    ![Uncomment block in GuestSearchByNameSteps file](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-UncommentSection.png =50%x)
+    ![Uncomment block in GuestSearchByNameSteps file](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-UncommentSection.png)
 
 2. Go to App.config in the solution explorer from `SmartHotel360.Registration.Web.Integration.Tests -> App.Config `as shown below:
 
@@ -67,13 +67,13 @@ In this exercise we are using BDD approach for integration tests or other types 
   
     >**AdministratorLoginPassword**: devadmin@123
     
-    ![App Config Update Credentials](../../.Images/Bookings/Booking-CQ-VisualStudio-Code-AppConfig.PNG =50%x)
+    ![App Config Update Credentials](../../.Images/Bookings/Booking-CQ-VisualStudio-Code-AppConfig.PNG)
 
     ><span style="color: black; background: lemonchiffon">**NOTE**: **Step 3** asks you to put sql server credentials in config file. This is poor practice and done intentionally to highlight usage of Key Vault & CredScan later on.</span>
 
 4. Right click and **build** the **SmartHotel360.Registration.Web.Integration.Tests** as shown below.
 
-    ![Build Integration Tests](../../.Images/Bookings/Booking-CQ-VisualStudio-BuildIntegrationTests.png =50%x)
+    ![Build Integration Tests](../../.Images/Bookings/Booking-CQ-VisualStudio-BuildIntegrationTests.png)
 
 #### Executing BDD Test | Fail
 
@@ -81,21 +81,21 @@ In this exercise we are using BDD approach for integration tests or other types 
 
 1. To open Test Explorer Window, Go to `Test->Windows->Test Explorer`.  
     
-    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png =30%x)
+    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png)
 
 	Scenarios are displayed with their plain text scenario title instead of a generated unit test name.
 
 2. Right Click on **SearchBasedOnTheFirstName** ->  **Run Selected Tests** to run your test. 
 
-   ![BDD Run Test Option](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-RunFailedTest-Path.png =50%x)
+   ![BDD Run Test Option](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-RunFailedTest-Path.png)
 
 3. First test will fail as the **SearchGuestByFirstName** method inside `SmartHotel360.Registration.Web->BusinessLogic->Concrete->BookingManager.cs` is not yet implemented.
    
-   ![Booking Manager File Incomplete](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-ManagerIncomplete.png =60%x)
+   ![Booking Manager File Incomplete](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-ManagerIncomplete.png)
 
 4. Verify the results of first run of BDD as shown below:
      
-    ![BDD Run Test Failed](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-TestResults-Failed.png =20%x)
+    ![BDD Run Test Failed](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-TestResults-Failed.png)
 
 5. Open the file `SmartHotel360.Registration.Web->BusinessLogic->Concrete->BookingManager.cs` **SearchGuestByFirstName** method will look like as per the below image.
 
@@ -103,8 +103,8 @@ In this exercise we are using BDD approach for integration tests or other types 
 
     Follow the steps mentioned within the method **SearchGuestByFirstName** of commenting & uncommenting. The method will look like this:
 
-    ![SearchGuestByFirstName Method After Stage](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-BookingManager-Method-Uncomment.png =70%x)
-    
+    ![SearchGuestByFirstName Method After Stage](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-BookingManager-Method-Uncomment.png)
+
 6. Open the file `SmartHotel360.Registration.Web->Repository->BookingRepository.cs.`
 Follow the steps mentioned within the method **GetBookingsByCustomerFirstName** of commenting & uncommenting.
   
@@ -116,15 +116,15 @@ Executing Your Second run of Test related to `SearchGuestsByFirstName` feature w
 
 1. To open Test Explorer Window, Go to `Test->Windows->Test Explorer`.  
     
-    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png =30%x)
+    ![Test Explorer Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-TestExplorerWindow.png)
 
 2. Right Click on **SearchBasedOnTheFirstName** ->  **Run Selected Tests** to run your test. 
 
-   ![BDD Run Test Option](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-RunFailedTest-Path.png =50%x)
+   ![BDD Run Test Option](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-RunFailedTest-Path.png)
 
 3. As the automation and application code has been implemented, the test will pass successfully.
 
-   ![BDD Run Test Pass](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-TestCasePassedSuccessfully.png =30%x)
+   ![BDD Run Test Pass](../../.Images/Bookings/Booking-CQ-VisualStudio-BDD-TestCasePassedSuccessfully.png)
 
 ### Exercise 3 : Enabling UI Test
 
@@ -136,7 +136,7 @@ In software engineering, graphical user interface testing is the process of test
 
 2. Go to `SmartHotel360.Registration.Web.Tests.SeleniumTests -> SearchFeatureSeleniumTests` and **DELETE** Ignore attribute from as highlighted in the image shown below. The tests will not be skipped now.
  
-    ![SearchFeatureSeleniumTests remove Ignore tag](../../.Images/Bookings/Booking-CQ-VisualStudio-UI-RemoveIgnore.png)   
+    ![SearchFeatureSeleniumTests remove Ignore tag](../../.Images/Bookings/Booking-CQ-VisualStudio-UI-RemoveIgnore.png)
 
 3. Go to **Web.config** in the solution explorer from `SmartHotel360.Registration.Web->Web.Config` as shown below:
 
@@ -154,7 +154,7 @@ In software engineering, graphical user interface testing is the process of test
 
 5. Go to the Top Ribbon and click on Debug-> Start Without Debugging to run `**SmartHotel360.Registration.Web**` application.
     
-    ![Booking Run Web Application Option](../../.Images/Bookings/Booking-CQ-VisualStudio-RunWebApplication.png =30%x)
+    ![Booking Run Web Application Option](../../.Images/Bookings/Booking-CQ-VisualStudio-RunWebApplication.png)
 
 6. The Booking application will be running in your default browser as shown below.
     
@@ -162,11 +162,11 @@ In software engineering, graphical user interface testing is the process of test
 
 7. Right click and build the **SmartHotel360.Registration.Web.Tests** as shown below in Solution Explorer.
 
-    ![Build Web.Tests Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-BuildTests.png =30%x)
+    ![Build Web.Tests Option](../../.Images/Bookings/Booking-CQ-VisualStudio-UT-BuildTests.png)
 
 8. Open Internet Explorer browser, you will be presented with a popup warning for security settings. Selected the highlighted radio button **Use recommended security and compatibility settings** and click on **Ok**.
 
-    ![IE Compatibility Settings](../../.Images/Bookings/Booking-CQ-IE-Options.png =40%x)
+    ![IE Compatibility Settings](../../.Images/Bookings/Booking-CQ-IE-Options.png)
 
 9. To open Test Explorer Window, Go to `Test->Windows->Test Explorer`.  
     
@@ -193,19 +193,19 @@ In software engineering, graphical user interface testing is the process of test
 
 13. Verify that step 12 as mentioned above is performed successfully and you see the test execution results in test explorer as per below image.
 
-    ![Booking Verify UI Test Pass](../../.Images/Bookings/Booking-CQ-VisualStudio-VerifyUITest-Success.png =50%x)
+    ![Booking Verify UI Test Pass](../../.Images/Bookings/Booking-CQ-VisualStudio-VerifyUITest-Success.png)
 
     ><span style="color: white; background: red">**NOTE** DO NOT Check-in `Web.Config` or `App.Config` files as part of raising pull request process because CredScan will break the build as it is a poor practice to checkin credentials in source code.
 
 14. **Commit** all your changes. Enter a **logical Commit Message** that clearly descibes all the changes that you have made as shown in the image below.
 
-	![Commit Changes](../../.Images/Bookings/Booking-CQ-Commit-Changes.png =30%x)
+  ![Commit Changes](../../.Images/Bookings/Booking-CQ-Commit-Changes.png)
 
 15. Click on **Commit-Staged** and check-in your staged changes/changes in your feature branch locally.
 
 16. Switch to Branch view and push the branch.
     
-      ![Push Branch](/2-Continuous-Integration/.Images/Bookings/Booking-CI-Push-Changes.png =40%x)
+      ![Push Branch](/2-Continuous-Integration/.Images/Bookings/Booking-CI-Push-Changes.png)
 
 17. Navigate to the **Azure DevOps Project** 
     >**Note:** Please contact your coach  for the link of the Azure DevOps Project.
@@ -220,13 +220,13 @@ In software engineering, graphical user interface testing is the process of test
 
 19. Create a pull request for merge into master trunk by right clicking the branch in branch view as shown below.
 	
-    ![Create Pull Request](/2-Continuous-Integration/.Images/Bookings/Booking-CI-VisualStudio-CreatePullRequest.png =30%x)
+    ![Create Pull Request](/2-Continuous-Integration/.Images/Bookings/Booking-CI-VisualStudio-CreatePullRequest.png)
 
 20. Update the reviewers, description and title as shown below. Then click on Create as shown below:
     
     ><span style="color: black; background: lemonchiffon">**NOTE** Make sure that reviewer is part of the team the user is working on. There should be at least one reviewer added to the Peer-Reviewing process.
 	
-     ![Pull Request Details](/2-Continuous-Integration/.Images/Bookings/Booking-CI-AzureDevops-PullRequestDescription.png =70%x)
+     ![Pull Request Details](/2-Continuous-Integration/.Images/Bookings/Booking-CI-AzureDevops-PullRequestDescription.png)
 
 21. Students who are assigned as approver can carry out the approval process by navigating to the pull request and click on **Approve** as shown below.
         
@@ -236,7 +236,7 @@ In software engineering, graphical user interface testing is the process of test
 
     ><span style="color: black; background: lemonchiffon">**NOTE** The squash commits of the merged branch are squashed into one and applied to the target branch. This shows a linear history of the commits.	
       
-    ![Complete Pull Request](/2-Continuous-Integration/.Images/Bookings/Booking-CI-AzureDevops-CompletePullRequest.png =70%x)
+    ![Complete Pull Request](/2-Continuous-Integration/.Images/Bookings/Booking-CI-AzureDevops-CompletePullRequest.png)
 
     **Successful PR completion looks like this:**
 

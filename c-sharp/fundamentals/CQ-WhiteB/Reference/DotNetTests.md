@@ -1,5 +1,4 @@
 [[_TOC_]]
-# Introduction to TDD
 
 # Introduction to TDD
 
@@ -8,8 +7,8 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 ## Steps in the TDD process
 
 1. Write a unit test that fails.
-	
-2. Write enough code to make the test pass — at this step we don’t care about good code.
+
+2. Write enough code to make the test pass - at this step we don’t care about good code.
 
 3. Refactor your code from the previous step.
 
@@ -45,7 +44,7 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 3. Sample Unit Test would be created as shown below
     
-    ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png =50%x)
+    ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png)
 
 # Introduction to BDD
 
@@ -75,7 +74,7 @@ Installing SpecFlow consists of two steps:
 
 The easiest way to install the SpecFlow Visual Studio extension method is to select **Tools | Extensions** and Updates from the menu in Visual Studio, switch to the Online search on the left and enter “SpecFlow” in the search field at the top right.
 
-![](../.Images/InstallingSpecflow.png)
+![InstallingSpecflow](../.Images/InstallingSpecflow.png)
 
 Click on the **Download** button to install the extension.
 
@@ -101,7 +100,7 @@ In order to run your tests, SpecFlow needs to generate so-called “code-behind�
 Apart from this, make sure you have the below nuget packages installed in your specs.tests project.
 >Note: Package for Specflow.MsTest is only for MSTest framework using SpecFlow.
 
-![](../.Images/NugetPackages.png =20%x)
+![NugetPackages](../.Images/NugetPackages.png)
 
 ### Adding a Feature File
 

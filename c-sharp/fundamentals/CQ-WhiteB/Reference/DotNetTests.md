@@ -39,21 +39,24 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 1. Right Click the **Unit Test Project** or **Unit Test Folder**, in our case it would be **SmartHotel360.Registration.Web.Tests**. Click on Add New Item.
 
-   ![Booking Add New Unit Test](../.Images/Booking-AddNewUnitTest.png =40%x)
+  <!-- ![Booking Add New Unit Test](../.Images/Booking-AddNewUnitTest.png =40%x) -->
+    <p align="left">
+      <img width=40% src="../.Images/Booking-AddNewUnitTest.png">
+    </p>
 
 2. Choose **Test** under Visual C# Items-> **Unit Test** as highlighted in the image. Give some meaningful name to the test file.
 
     <!-- ![Booking Create New Unit Test](../.Images/Booking-CreateNewUnitTest.png) -->
-<p align="left">
-  <img width=70% src="../.Images/Booking-CreateNewUnitTest.png">
-</p>
+    <p align="left">
+      <img width=100% src="../.Images/Booking-CreateNewUnitTest.png">
+    </p>
 
 3. Sample Unit Test would be created as shown below
-    
+
     <!-- ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png =50%x) -->
-<p align="left">
-  <img width=50% src="../.Images/Booking-SampleUnitTest.png">
-</p>
+    <p align="left">
+      <img width=50% src="../.Images/Booking-SampleUnitTest.png">
+    </p>
 
 # Introduction to BDD
 

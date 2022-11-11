@@ -1,10 +1,12 @@
-# Introduction to TDD
+# Driven Development
 
 [[_TOC_]]
 
+## Introduction to TDD
+
 TDD stands for **Test Driven Development**, and it’s a design process in software development. It relies on the repetition of a very short development cycle, and the requirements are turned into very specific test cases.
 
-## Steps in the TDD process
+### Steps in the TDD process
 
 1. Write a unit test that fails.
 
@@ -12,14 +14,14 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 3. Refactor your code from the previous step.
 
-## TDD Life cycle
+### TDD Life cycle
 
 <!-- ![TDD Life cycle](../.Images/TDDLifeCycle.png =40%) -->
 <p align="center">
   <img width=30% src="../.Images/TDDLifeCycle.png">
 </p>
 
-## What are the benefits of this approach?
+### What are the benefits of this approach?
 
 - First of all, you get a **better understanding of the actual code** before you write it. This is one of the greatest benefits of TDD. When you write the test cases first, you think more clearly about the system requirements and more critically about the corner cases.
 
@@ -31,11 +33,11 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 - And finally, you can **focus on building the smaller components** in the best way and avoid the headache of the big picture. So how does this help? You’ll write one failing test, and focus solely on that to get it passing. It forces you to think about smaller chunks of functionality at a time rather than the application as a whole. Then you can incrementally build on a passing test, rather than trying to tackle the bigger picture from the get-go, which will probably result in more bugs.
 
-## Follow the below link to get started with TDD:
+### Follow the below link to get started with TDD
 
 **[TDD Quick Start Guide](https://docs.microsoft.com/en-us/visualstudio/test/quick-start-test-driven-development-with-test-explorer?view=vs-2019)**
 
-## Create Unit test in VS 2019
+### Create Unit test in VS 2019
 
 1. Right Click the **Unit Test Project** or **Unit Test Folder**, in our case it would be **SmartHotel360.Registration.Web.Tests**. Click on Add New Item.
 
@@ -57,12 +59,13 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
       <img width=50% src="../.Images/Booking-SampleUnitTest.png">
     </p>
 
-# Introduction to BDD
+## Introduction to BDD
 
-## What is BDD?
+### What is BDD?
+
 Behavioral Driven Development (BDD) is a software development approach that has evolved from TDD (Test Driven Development). It differs by being written in a **shared language, which improves communication between tech and non-tech teams and stakeholders**. In both development approaches, tests are written ahead of the code, but in BDD, tests are more user-focused and based on the system’s behavior.
 
-## Getting started with BDD
+### Getting started with BDD
 
 This guide contains the following sections:
 
@@ -73,7 +76,7 @@ This guide contains the following sections:
 
 > Instead of SpecFlow+ Runner, you can also use other test engines, like MsTest, xUnit, or NUnit. These packages are installed in exactly the same manner as SpecFlow+ Runner. However to follow all the steps in this guide, you need to install SpecFlow+ Runner. The evaluation version of SpecFlow+ Runner delays the execution of your tests by a number of seconds each time. You can request a [https://specflow.org/plus/request-trial/](demo license key) to remove this restriction (please include your name and company name, as this information is included in the license).
 
-### Installation and Setup
+#### Installation and Setup
 
 Installing SpecFlow consists of two steps:
 
@@ -81,7 +84,7 @@ Installing SpecFlow consists of two steps:
     
     2. Set up your Visual Studio project to work with SpecFlow
 
-### Installing the IDE Integration Packages
+#### Installing the IDE Integration Packages
 
 The easiest way to install the SpecFlow Visual Studio extension method is to select **Tools | Extensions** and Updates from the menu in Visual Studio, switch to the Online search on the left and enter “SpecFlow” in the search field at the top right.
 
@@ -93,7 +96,7 @@ The easiest way to install the SpecFlow Visual Studio extension method is to sel
 
 Click on the **Download** button to install the extension.
 
-### Setting Up your SpecFlow Project
+#### Setting Up your SpecFlow Project
 
 SpecFlow tests are usually placed into one or more separate projects in your solution, and these projects are referred to as a “specification project” below. The easiest and most convenient way to set up these projects is to use our SpecFlow NuGet package or one of the specific helper packages, like SpecRun.SpecFlow or SpecFlow.NUnit.
 
@@ -119,7 +122,7 @@ Apart from this, make sure you have the below nuget packages installed in your s
       <img width=20% src="../.Images/NugetPackages.png">
     </p>
 
-### Adding a Feature File
+#### Adding a Feature File
 
 1. Right-click on your specifications project and select `Add -> New Item` from the popup menu.
 
@@ -139,7 +142,7 @@ Scenario: Search based on the first name
 
 >Note: Gherkin language is used for above feature file.Gherkin is a Business Readable, Domain Specific Language created especially for behavior descriptions. It gives you the ability to remove logic details from behavior tests. Gherkin serves two purposes: serving as your project's documentation and automated tests.
 
-### Generating Step Definitions
+#### Generating Step Definitions
 
 In order to test our scenario, we need to create step definitions that bind the statements in the test scenario to the application code. SpecFlow can automatically generate a skeleton for the automation code that you can then extend as necessary:
 
@@ -181,7 +184,7 @@ In order to test our scenario, we need to create step definitions that bind the 
     }
 ```
 
-### Feature Steps
+#### Feature Steps
 
 1. **Given**
 The purpose of Given steps is to put the system in a known state before the user (or external system) starts interacting with the system (in the When steps). Avoid talking about user interaction in givens. 

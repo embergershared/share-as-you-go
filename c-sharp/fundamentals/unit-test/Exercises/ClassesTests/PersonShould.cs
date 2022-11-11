@@ -21,10 +21,10 @@ namespace ClassesTests
         public void IsInstanceOfTypeSupervisor_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
 
             // Act
-            var actual = personManager.CreatePerson("Piotr", "Knott", true);
+            var actual = sut.CreatePerson("Piotr", "Knott", true);
 
             // Assert
             Assert.IsInstanceOfType(actual, typeof(Supervisor));
@@ -35,10 +35,10 @@ namespace ClassesTests
         public void IsNull_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
 
             // Act
-            var actual = personManager.CreatePerson("", "Joel", true);
+            var actual = sut.CreatePerson("", "Joel", true);
 
             // Assert
             Assert.IsNull(actual);
@@ -49,7 +49,7 @@ namespace ClassesTests
         public void AreCollectionsEqual_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
             var peopleExpected = new List<Person>
             {
                 new() { FirstName = "Paul", LastName = "McCartney" },
@@ -59,7 +59,7 @@ namespace ClassesTests
             };
 
             // Act
-            var peopleActual = personManager.GetPeople();
+            var peopleActual = sut.GetPeople();
 
             // Assert
             CollectionAssert.AreNotEqual(peopleExpected, peopleActual);
@@ -70,10 +70,10 @@ namespace ClassesTests
         public void IsCollectionOfType_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
 
             // Act
-            var peopleActual = personManager.GetSupervisors();
+            var peopleActual = sut.GetSupervisors();
 
             // Assert
             CollectionAssert.AllItemsAreInstancesOfType(peopleActual, typeof(Supervisor));
@@ -84,11 +84,11 @@ namespace ClassesTests
         public void AreCollectionEquivalent_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
             var peopleExpected = new List<Person>();
 
             // Act
-            var peopleActual = personManager.GetPeople();
+            var peopleActual = sut.GetPeople();
             peopleExpected.Add(peopleActual[1]);
             peopleExpected.Add(peopleActual[2]);
             peopleExpected.Add(peopleActual[3]);
@@ -103,7 +103,7 @@ namespace ClassesTests
         public void AreCollectionsEqualWithComparer_Test()
         {
             // Arrange
-            var personManager = new PersonManager();
+            var sut = new PersonManager();
             var peopleExpected = new List<Person>
             {
                 new() { FirstName = "Paul", LastName = "McCartney" },
@@ -113,13 +113,12 @@ namespace ClassesTests
             };
 
             // Act
-            var peopleActual = personManager.GetPeople();
+            var peopleActual = sut.GetPeople();
 
             // Assert
             CollectionAssert.AreEqual(peopleExpected, peopleActual,
                 Comparer<Person>.Create((x,y) => 
                     x.FirstName == y.FirstName && x.LastName == y.LastName ? 0 : 1 ));
         }
-
     }
 }

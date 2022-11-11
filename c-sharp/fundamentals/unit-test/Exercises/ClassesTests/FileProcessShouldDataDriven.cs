@@ -14,7 +14,7 @@ namespace ClassesTests
         {
             // Arrange
             var testFailed = false;
-            var fp = new FileProcess();
+            var sut = new FileProcess();
             const string sqlQuery = "SELECT * FROM tests.FileProcessTest";
             var sqlConnString = TestContext!.Properties["SqlConnectionString"]!.ToString();
             if (sqlConnString != null)
@@ -34,7 +34,7 @@ namespace ClassesTests
                         try
                         {
                             // Act
-                            actual = fp.FileExists(fileName);
+                            actual = sut.FileExists(fileName);
                         }
                         catch (ArgumentNullException)
                         {

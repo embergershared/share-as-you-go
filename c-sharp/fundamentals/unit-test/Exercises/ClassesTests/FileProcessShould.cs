@@ -60,11 +60,11 @@ namespace ClassesTests
             TestContext?.WriteLine("In FileExists_FileNameDoesExist_ReturnsBool() method");
 
             // Arrange
-            var fp = new FileProcess();
+            var sut = new FileProcess();
 
             // Act
             TestContext?.WriteLine($"Asserting FileExists for file: {GoodFileName}");
-            var actual = GoodFileName != null && fp.FileExists(GoodFileName);
+            var actual = GoodFileName != null && sut.FileExists(GoodFileName);
 
             // Assert
             Assert.IsTrue(actual, "File \"{0}\" does not exist.", GoodFileName);
@@ -78,10 +78,10 @@ namespace ClassesTests
         public void FileExists_FileNameDoesNotExist_ReturnsBool()
         {
             // Arrange
-            var fp = new FileProcess();
+            var sut = new FileProcess();
 
             // Act
-            var actual = fp.FileExists(BadFileName);
+            var actual = sut.FileExists(BadFileName);
 
             // Assert
             Assert.IsFalse(actual);
@@ -96,10 +96,10 @@ namespace ClassesTests
         public void FileExists_FileNameIsNullOrEmptyUsingAttribute_ThrowException()
         {
             // Arrange
-            var fp = new FileProcess();
+            var sut = new FileProcess();
 
             // Act
-            fp.FileExists("");
+            sut.FileExists("");
 
             // Assert
         }
@@ -112,12 +112,12 @@ namespace ClassesTests
         public void FileExists_FileNameIsNullOrEmptyUsingTryCatch_ThrowException()
         {
             // Arrange
-            var fp = new FileProcess();
+            var sut = new FileProcess();
 
             // Act
             try
             {
-                fp.FileExists("");
+                sut.FileExists("");
             }
             catch (ArgumentNullException)
             {
@@ -157,7 +157,7 @@ namespace ClassesTests
             TestContext?.WriteLine("In FileExists_FileNameUsingDeploymentItem_ReturnsBool() method");
 
             // Arrange
-            var fp = new FileProcess();
+            var sut = new FileProcess();
                 // If fileName doesn't have "\", we assume it is the file we carry with DeploymentItem so we add its Path prefix
             if (fileName != null && !fileName.Contains($@"\"))
             {
@@ -166,7 +166,7 @@ namespace ClassesTests
 
             // Act
             TestContext?.WriteLine($"Asserting FileExists for file: {fileName}");
-            var actual = fp.FileExists(fileName);
+            var actual = sut.FileExists(fileName);
 
             // Assert
             Assert.IsTrue(actual);
@@ -202,7 +202,6 @@ namespace ClassesTests
             Assert.AreSame(x, y);
             Assert.AreNotSame(y, z);
         }
-
         #endregion
     }
 }

@@ -113,9 +113,8 @@ In order to run your tests, SpecFlow needs to generate so-called â€œcode-behindâ
 Apart from this, make sure you have the below nuget packages installed in your specs.tests project.
 >Note: Package for Specflow.MsTest is only for MSTest framework using SpecFlow.
 
-![](../.Images/NugetPackages.png =20%x)
     <p align="left">
-      <img width=60% src="../.Images/NugetPackages.png">
+      <img width=20% src="../.Images/NugetPackages.png">
     </p>
 
 ### Adding a Feature File

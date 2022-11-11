@@ -67,7 +67,7 @@ namespace ClassesTests
             var actual = GoodFileName != null && fp.FileExists(GoodFileName);
 
             // Assert
-            Assert.IsTrue(actual);
+            Assert.IsTrue(actual, "File \"{0}\" does not exist.", GoodFileName);
         }
 
         [TestMethod]
@@ -134,7 +134,7 @@ namespace ClassesTests
         [Timeout(1000)]
         public void SimulateTimeout()
         {
-            System.Threading.Thread.Sleep(1500);
+            System.Threading.Thread.Sleep(500);
         }
 
         [TestMethod]
@@ -170,6 +170,37 @@ namespace ClassesTests
 
             // Assert
             Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        [Description("Try different String equality tests.")]
+        public void Strings_AreEqual()
+        {
+            // Arrange
+            const string str1 = "Jack";
+            const string str2 = "jack";
+
+            // Act
+
+            // Assert
+            Assert.AreEqual(str1,str2, true);
+        }
+
+
+        [TestMethod]
+        [Description("Try different Objects are same tests.")]
+        public void Objects_AreSame()
+        {
+            // Arrange
+            var x = new FileProcess();
+            var y = x;
+            var z = new FileProcess();
+
+            // Act
+
+            // Assert
+            Assert.AreSame(x, y);
+            Assert.AreNotSame(y, z);
         }
 
         #endregion

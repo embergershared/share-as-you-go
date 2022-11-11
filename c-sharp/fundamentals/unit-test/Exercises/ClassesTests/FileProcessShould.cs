@@ -152,14 +152,14 @@ namespace ClassesTests
         [DeploymentItem("FileToDeploy.txt")]
         [DataRow(@"C:\Windows\explorer.exe", DisplayName = "explorer.exe")]
         [DataRow("FileToDeploy.txt", DisplayName = "DeploymentItem: FileToDeploy.txt")]
-        public void FileExists_FileNameUsingDeploymentItem_ReturnsBool(string fileName)
+        public void FileExists_FileNameUsingDeploymentItem_ReturnsBool(string? fileName)
         {
             TestContext?.WriteLine("In FileExists_FileNameUsingDeploymentItem_ReturnsBool() method");
 
             // Arrange
             var fp = new FileProcess();
                 // If fileName doesn't have "\", we assume it is the file we carry with DeploymentItem so we add its Path prefix
-            if (!fileName.Contains($@"\"))
+            if (fileName != null && fileName.Contains($@"\"))
             {
                 if (TestContext != null) fileName = TestContext.DeploymentDirectory + @"\" + fileName;
             }

@@ -3,5 +3,7 @@
   <TestRunParameters>
     <Parameter name="GoodFileName"
                value="[AppPath]\TestFile.txt" />
+    <Parameter name="SqlConnectionString"
+               value="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Sandbox;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"/>
   </TestRunParameters>
 </RunSettings>

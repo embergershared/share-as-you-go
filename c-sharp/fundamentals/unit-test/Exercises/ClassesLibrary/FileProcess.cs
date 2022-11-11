@@ -5,7 +5,7 @@ namespace ClassesLibrary
 {
     public class FileProcess
     {
-        public bool FileExists(string fileName)
+        public bool FileExists(string? fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {

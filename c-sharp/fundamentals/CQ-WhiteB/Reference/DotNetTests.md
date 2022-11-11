@@ -14,7 +14,7 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 ## TDD Life cycle
 
-<!-- ![TDD Life cycle](../.Images/TDDLifeCycle.png | width=50%) -->
+<!-- ![TDD Life cycle](../.Images/TDDLifeCycle.png =40%) -->
 <p align="center">
   <img width=40% src="../.Images/TDDLifeCycle.png">
 </p>
@@ -42,12 +42,19 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
    ![Booking Add New Unit Test](../.Images/Booking-AddNewUnitTest.png =40%x)
 
 2. Choose **Test** under Visual C# Items-> **Unit Test** as highlighted in the image. Give some meaningful name to the test file.
-    
-    ![Booking Create New Unit Test](../.Images/Booking-CreateNewUnitTest.png)
+
+    <!-- ![Booking Create New Unit Test](../.Images/Booking-CreateNewUnitTest.png) -->
+<p align="center">
+  <img width=70% src="../.Images/Booking-CreateNewUnitTest.png">
+</p>
+
 
 3. Sample Unit Test would be created as shown below
     
-    ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png =50%x)
+    <!-- ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png =50%x) -->
+<p align="center">
+  <img width=50% src="../.Images/Booking-SampleUnitTest.png">
+</p>
 
 # Introduction to BDD
 

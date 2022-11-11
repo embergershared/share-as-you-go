@@ -35,6 +35,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Classes.Designer.cs</LastGenOutput>
     </None>
+    <None Update="FileToDeploy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

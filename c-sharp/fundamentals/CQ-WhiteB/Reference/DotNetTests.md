@@ -39,7 +39,7 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 
 1. Right Click the **Unit Test Project** or **Unit Test Folder**, in our case it would be **SmartHotel360.Registration.Web.Tests**. Click on Add New Item.
 
-  <!-- ![Booking Add New Unit Test](../.Images/Booking-AddNewUnitTest.png =40%x) -->
+  ![Booking Add New Unit Test](../.Images/Booking-AddNewUnitTest.png)
     <p align="left">
       <img width=40% src="../.Images/Booking-AddNewUnitTest.png">
     </p>

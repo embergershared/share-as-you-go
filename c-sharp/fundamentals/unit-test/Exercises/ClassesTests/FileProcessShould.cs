@@ -159,7 +159,7 @@ namespace ClassesTests
             // Arrange
             var fp = new FileProcess();
                 // If fileName doesn't have "\", we assume it is the file we carry with DeploymentItem so we add its Path prefix
-            if (fileName != null && fileName.Contains($@"\"))
+            if (fileName != null && !fileName.Contains($@"\"))
             {
                 if (TestContext != null) fileName = TestContext.DeploymentDirectory + @"\" + fileName;
             }

@@ -85,6 +85,8 @@ Installing SpecFlow consists of two steps:
 
 The easiest way to install the SpecFlow Visual Studio extension method is to select **Tools | Extensions** and Updates from the menu in Visual Studio, switch to the Online search on the left and enter “SpecFlow” in the search field at the top right.
 
+    ![Install Specflow](../.Images/InstallingSpecflow.png)
+
     <p align="left">
       <img width=60% src="../.Images/InstallingSpecflow.png">
     </p>

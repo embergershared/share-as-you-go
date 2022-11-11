@@ -76,7 +76,7 @@ This guide contains the following sections:
 ### Installation and Setup
 
 Installing SpecFlow consists of two steps:
-	
+
     1. Install the IDE integration
     
     2. Set up your Visual Studio project to work with SpecFlow
@@ -85,7 +85,9 @@ Installing SpecFlow consists of two steps:
 
 The easiest way to install the SpecFlow Visual Studio extension method is to select **Tools | Extensions** and Updates from the menu in Visual Studio, switch to the Online search on the left and enter “SpecFlow” in the search field at the top right.
 
-![](../.Images/InstallingSpecflow.png)
+    <p align="left">
+      <img width=60% src="../.Images/InstallingSpecflow.png">
+    </p>
 
 Click on the **Download** button to install the extension.
 
@@ -112,6 +114,9 @@ Apart from this, make sure you have the below nuget packages installed in your s
 >Note: Package for Specflow.MsTest is only for MSTest framework using SpecFlow.
 
 ![](../.Images/NugetPackages.png =20%x)
+    <p align="left">
+      <img width=60% src="../.Images/NugetPackages.png">
+    </p>
 
 ### Adding a Feature File
 

@@ -44,15 +44,14 @@ TDD stands for **Test Driven Development**, and it’s a design process in softw
 2. Choose **Test** under Visual C# Items-> **Unit Test** as highlighted in the image. Give some meaningful name to the test file.
 
     <!-- ![Booking Create New Unit Test](../.Images/Booking-CreateNewUnitTest.png) -->
-<p align="center">
+<p align="left">
   <img width=70% src="../.Images/Booking-CreateNewUnitTest.png">
 </p>
-
 
 3. Sample Unit Test would be created as shown below
     
     <!-- ![Booking Sample Unit Test](../.Images/Booking-SampleUnitTest.png =50%x) -->
-<p align="center">
+<p align="left">
   <img width=50% src="../.Images/Booking-SampleUnitTest.png">
 </p>
 

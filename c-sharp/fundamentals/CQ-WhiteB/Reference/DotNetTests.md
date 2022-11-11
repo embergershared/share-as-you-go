@@ -1,21 +1,21 @@
-[[_TOC_]]
 # Introduction to TDD
 
-# Introduction to TDD
+[[_TOC_]]
 
 TDD stands for **Test Driven Development**, and it’s a design process in software development. It relies on the repetition of a very short development cycle, and the requirements are turned into very specific test cases.
 
 ## Steps in the TDD process
 
 1. Write a unit test that fails.
-	
-2. Write enough code to make the test pass — at this step we don’t care about good code.
+
+2. Write enough code to make the test pass - at this step we don’t care about good code.
 
 3. Refactor your code from the previous step.
 
 ## TDD Life cycle
 
-![](../.Images/TDDLifeCycle.png =50%x)
+![TDD Life cycle](../.Images/TDDLifeCycle.png | width=50%)
+<img src="../.Images/TDDLifeCycle.png" width=50% height=50%>
 
 ## What are the benefits of this approach?
 

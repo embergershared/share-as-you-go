@@ -21,7 +21,9 @@ namespace ClassLibrary
                 return CreditCardApplicationDecision.AutoAccepted;
             }
 
-            if (_ffValidator.LicenseKey == "EXPIRED")
+            _ffValidator.ValidationMode = application.Age >= 30 ? ValidationMode.Detailed : ValidationMode.Quick;
+
+            if (_ffValidator.ServiceInformation.License.LicenseKey == "EXPIRED")
             {
                 return CreditCardApplicationDecision.ReferredToHuman;
             }
@@ -45,36 +47,36 @@ namespace ClassLibrary
             return CreditCardApplicationDecision.ReferredToHuman;
         }
 
-        public CreditCardApplicationDecision EvaluateUsingOut(CreditCardApplication application)
-        {
-            if (application.GrossAnnualIncome >= HighIncomeThreshold)
-            {
-                return CreditCardApplicationDecision.AutoAccepted;
-            }
+        //public CreditCardApplicationDecision EvaluateUsingOut(CreditCardApplication application)
+        //{
+        //    if (application.GrossAnnualIncome >= HighIncomeThreshold)
+        //    {
+        //        return CreditCardApplicationDecision.AutoAccepted;
+        //    }
 
-            if (_ffValidator.LicenseKey == "EXPIRED")
-            {
-                return CreditCardApplicationDecision.ReferredToHuman;
-            }
+        //    if (_ffValidator.LicenseKey == "EXPIRED")
+        //    {
+        //        return CreditCardApplicationDecision.ReferredToHuman;
+        //    }
 
-            _ffValidator.IsValid(application.FrequentFlyerNumber, out var isValidFF);
-            if (!isValidFF)
-            {
-                return CreditCardApplicationDecision.ReferredToHuman;
-            }
+        //    _ffValidator.IsValid(application.FrequentFlyerNumber, out var isValidFF);
+        //    if (!isValidFF)
+        //    {
+        //        return CreditCardApplicationDecision.ReferredToHuman;
+        //    }
 
-            if (application.Age <= AutoReferralMaxAge)
-            {
-                return CreditCardApplicationDecision.ReferredToHuman;
-            }
+        //    if (application.Age <= AutoReferralMaxAge)
+        //    {
+        //        return CreditCardApplicationDecision.ReferredToHuman;
+        //    }
 
-            if (application.GrossAnnualIncome < LowIncomeThreshold)
-            {
-                return CreditCardApplicationDecision.AutoDeclined;
-            }
+        //    if (application.GrossAnnualIncome < LowIncomeThreshold)
+        //    {
+        //        return CreditCardApplicationDecision.AutoDeclined;
+        //    }
 
-            return CreditCardApplicationDecision.ReferredToHuman;
-        }
+        //    return CreditCardApplicationDecision.ReferredToHuman;
+        //}
 
     }
 }

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
     public interface IFrequentFlyerValidator
     {
+        // Interface Methods
         bool IsValid(string frequentFlyerNumber);
         void IsValid(string frequentFlyerNumber, out bool isValid);
+        
+        // Interface Properties
+        string LicenseKey { get; }
     }
 }

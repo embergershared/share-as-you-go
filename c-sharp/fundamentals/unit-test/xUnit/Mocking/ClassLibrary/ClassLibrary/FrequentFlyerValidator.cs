@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
     public class FrequentFlyerValidator : IFrequentFlyerValidator
     {
@@ -17,5 +11,7 @@ namespace ClassLibrary
         {
             throw new NotImplementedException("Simulate this dependency.");
         }
+
+        public string LicenseKey => throw new NotImplementedException("For demo purposes.");
     }
 }

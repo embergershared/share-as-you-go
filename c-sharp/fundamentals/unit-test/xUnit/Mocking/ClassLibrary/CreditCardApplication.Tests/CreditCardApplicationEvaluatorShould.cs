@@ -84,7 +84,7 @@ namespace ClassLibrary.Tests
         public void Refer_InvalidFrequentFlyer_Applications()
         {
             // Arrange
-            var mockFfValidator = new Mock<IFrequentFlyerValidator>(MockBehavior.Strict);
+            var mockFfValidator = new Mock<IFrequentFlyerValidator>(MockBehavior.Loose);
             mockFfValidator.Setup(
                 x => x.IsValid(It.IsAny<string>()))
                 .Returns(false);
@@ -126,5 +126,29 @@ namespace ClassLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void Refer_WhenLicensedKeyExpired()
+        {
+            // Arrange
+            var expected = CreditCardApplicationDecision.ReferredToHuman;
+            
+            var mockValidator = new Mock<IFrequentFlyerValidator>();
+            mockValidator.Setup(x => x.IsValid(It.IsAny<string>())).Returns(true);
+            mockValidator.Setup(x => x.LicenseKey).Returns(GetLicenseKey);
+
+            var sut = new CreditCardApplicationEvaluator(mockValidator.Object);
+            var application = new CreditCardApplication { Age = 42 };
+
+            // Act
+            var actual = sut.Evaluate(application);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        private string GetLicenseKey()
+        {
+            return "EXPIRED";
+        }
     }
 }

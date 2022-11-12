@@ -21,6 +21,11 @@ namespace ClassLibrary
                 return CreditCardApplicationDecision.AutoAccepted;
             }
 
+            if (_ffValidator.LicenseKey == "EXPIRED")
+            {
+                return CreditCardApplicationDecision.ReferredToHuman;
+            }
+
             var isValidFF = _ffValidator.IsValid(application.FrequentFlyerNumber);
             if (!isValidFF)
             {
@@ -45,6 +50,11 @@ namespace ClassLibrary
             if (application.GrossAnnualIncome >= HighIncomeThreshold)
             {
                 return CreditCardApplicationDecision.AutoAccepted;
+            }
+
+            if (_ffValidator.LicenseKey == "EXPIRED")
+            {
+                return CreditCardApplicationDecision.ReferredToHuman;
             }
 
             _ffValidator.IsValid(application.FrequentFlyerNumber, out var isValidFF);

@@ -11,7 +11,7 @@ namespace ClassLibrary
 
         public CreditCardApplicationEvaluator(IFrequentFlyerValidator ffValidator)
         {
-            _ffValidator = ffValidator;
+            _ffValidator = ffValidator ?? throw new System.ArgumentNullException(nameof(ffValidator));
         }
 
         public CreditCardApplicationDecision Evaluate(CreditCardApplication application)

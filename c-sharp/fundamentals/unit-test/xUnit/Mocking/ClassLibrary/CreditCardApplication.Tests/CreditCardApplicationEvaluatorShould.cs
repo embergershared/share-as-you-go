@@ -8,7 +8,7 @@ namespace ClassLibrary.Tests
         public void AutoAccept_HighIncomeApplications()
         {
             // Arrange
-            var sut = new CreditCardApplicationEvaluator();
+            var sut = new CreditCardApplicationEvaluator(null);
             var application = new CreditCardApplication { GrossAnnualIncome = 110_000 };
             var expected = CreditCardApplicationDecision.AutoAccepted;
 
@@ -23,7 +23,7 @@ namespace ClassLibrary.Tests
         public void Refer_YoungApplications()
         {
             // Arrange
-            var sut = new CreditCardApplicationEvaluator();
+            var sut = new CreditCardApplicationEvaluator(null);
             var application = new CreditCardApplication { Age = 19 };
             var expected = CreditCardApplicationDecision.ReferredToHuman;
 

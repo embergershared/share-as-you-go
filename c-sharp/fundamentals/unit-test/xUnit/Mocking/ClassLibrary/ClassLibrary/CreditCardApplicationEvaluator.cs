@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿// ReSharper disable InconsistentNaming
 
 namespace ClassLibrary
 {
@@ -11,7 +11,7 @@ namespace ClassLibrary
 
         public CreditCardApplicationEvaluator(IFrequentFlyerValidator ffValidator)
         {
-            _ffValidator = ffValidator ?? throw new System.ArgumentNullException(nameof(ffValidator));
+            _ffValidator = ffValidator;
         }
 
         public CreditCardApplicationDecision Evaluate(CreditCardApplication application)
@@ -22,6 +22,32 @@ namespace ClassLibrary
             }
 
             var isValidFF = _ffValidator.IsValid(application.FrequentFlyerNumber);
+            if (!isValidFF)
+            {
+                return CreditCardApplicationDecision.ReferredToHuman;
+            }
+
+            if (application.Age <= AutoReferralMaxAge)
+            {
+                return CreditCardApplicationDecision.ReferredToHuman;
+            }
+
+            if (application.GrossAnnualIncome < LowIncomeThreshold)
+            {
+                return CreditCardApplicationDecision.AutoDeclined;
+            }
+
+            return CreditCardApplicationDecision.ReferredToHuman;
+        }
+
+        public CreditCardApplicationDecision EvaluateUsingOut(CreditCardApplication application)
+        {
+            if (application.GrossAnnualIncome >= HighIncomeThreshold)
+            {
+                return CreditCardApplicationDecision.AutoAccepted;
+            }
+
+            _ffValidator.IsValid(application.FrequentFlyerNumber, out var isValidFF);
             if (!isValidFF)
             {
                 return CreditCardApplicationDecision.ReferredToHuman;

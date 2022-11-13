@@ -5,17 +5,34 @@ namespace ClassLibrary
     public class CreditCardApplicationEvaluator
     {
         private readonly IFrequentFlyerValidator _ffValidator;
+        private readonly FraudLookup _fraudLookup;
+        
         private const int AutoReferralMaxAge = 20;
         private const int HighIncomeThreshold = 100_000;
         private const int LowIncomeThreshold = 20_000;
+        
+        public int ValidatorLookupCount { get; private set; }
 
-        public CreditCardApplicationEvaluator(IFrequentFlyerValidator ffValidator)
+        public CreditCardApplicationEvaluator(IFrequentFlyerValidator ffValidator,
+            FraudLookup fraudLookup = null)
         {
             _ffValidator = ffValidator;
+            _ffValidator.ValidatorLookupPerformed += ValidatorLookupPerformed;
+            _fraudLookup = fraudLookup;
+        }
+
+        private void ValidatorLookupPerformed(object? sender, EventArgs e)
+        {
+            ValidatorLookupCount++;
         }
 
         public CreditCardApplicationDecision Evaluate(CreditCardApplication application)
         {
+            if (_fraudLookup != null && _fraudLookup.IsFraudRisk(application))
+            {
+                return CreditCardApplicationDecision.ReferredToHumanFraud;
+            }
+
             if (application.GrossAnnualIncome >= HighIncomeThreshold)
             {
                 return CreditCardApplicationDecision.AutoAccepted;
@@ -28,7 +45,17 @@ namespace ClassLibrary
                 return CreditCardApplicationDecision.ReferredToHuman;
             }
 
-            var isValidFF = _ffValidator.IsValid(application.FrequentFlyerNumber);
+            bool isValidFF;
+            try
+            {
+                isValidFF = _ffValidator.IsValid(application.FrequentFlyerNumber);
+            }
+            catch (Exception)
+            {
+                // TODO: Log the exception
+                return CreditCardApplicationDecision.ReferredToHuman;
+            }
+
             if (!isValidFF)
             {
                 return CreditCardApplicationDecision.ReferredToHuman;

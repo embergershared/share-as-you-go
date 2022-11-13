@@ -11,6 +11,8 @@
         IServiceInformation ServiceInformation { get; }
 
         ValidationMode ValidationMode { get; set; }
+
+        event EventHandler ValidatorLookupPerformed;
     }
 
     public interface ILicenseData

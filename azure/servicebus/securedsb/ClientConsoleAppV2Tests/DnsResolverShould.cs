@@ -10,35 +10,21 @@ namespace ClientConsoleAppV2Tests
     {
         [TestMethod]
         [Description("Test the resolver resolves google.com")]
-        public void Resolve_google()
+        [DataRow("www.google.com", true)]
+        [DataRow("www.microsoft.com", true)]
+        [DataRow("ww.mikrosoft.com", false)]
+        public void Resolve_FQDNs(string fqdn, bool normalResult)
         {
             // Arrange
-            var expected = true;
+            var expected = normalResult;
             var logger = Mock.Of<ILogger<DnsResolver>>();
             var mockDnsResolver = new DnsResolver(logger);
 
             // Act
-            var actual = mockDnsResolver.ResolveAsync("www.google.com").Result;
+            var actual = mockDnsResolver.ResolveAsync(fqdn).Result;
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
-        [Description("Test the resolver resolves microsoft.com")]
-        public void Resolve_microsoft()
-        {
-            // Arrange
-            var expected = true;
-            var logger = Mock.Of<ILogger<DnsResolver>>();
-            var mockDnsResolver = new DnsResolver(logger);
-
-            // Act
-            var actual = mockDnsResolver.ResolveAsync("www.microsoft.com").Result;
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-
     }
 }

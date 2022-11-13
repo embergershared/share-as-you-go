@@ -4,7 +4,6 @@
 
 using ClientConsoleAppV2.Interfaces;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace ClientConsoleAppV2.Classes
@@ -13,7 +12,8 @@ namespace ClientConsoleAppV2.Classes
     {
         private readonly ILogger<Console> _logger;
         private readonly IConfiguration _config;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IDnsResolver _dnsResolver;
+        private readonly IServiceBusClient _serviceBusClient;
 
         private static bool _testPrivateLink = true;
         private static string? _sbNamespace;
@@ -25,12 +25,14 @@ namespace ClientConsoleAppV2.Classes
         public Console(
             ILogger<Console> logger,
             IConfiguration config,
-            IServiceProvider serviceProvider
+            IDnsResolver dnsResolver,
+            IServiceBusClient serviceBusClient
             )
         {
             _logger = logger;
             _config = config;
-            _serviceProvider = serviceProvider;
+            _dnsResolver = dnsResolver;
+            _serviceBusClient = serviceBusClient;
         }
 
         public async Task ExecuteAsync()
@@ -93,30 +95,21 @@ namespace ClientConsoleAppV2.Classes
                 // Check DNS resolution to Service Bus
                 _logger.LogDebug("Launching DNS Resolution");
 
-                var resolver = _serviceProvider.GetService<IDnsResolver>();
-
-                if (resolver != null)
+                var success = await _dnsResolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
+                if (_testPrivateLink)
                 {
-                    var success = await resolver.ResolveAsync($"{_sbNamespace}.{Constants.SbPublicSuffix}.");
-                    if (_testPrivateLink)
-                    {
-                        success = success && await resolver.ResolveAsync(
-                            $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
-                    }
+                    success = success && await _dnsResolver.ResolveAsync(
+                        $"{_sbNamespace}.{Constants.SbPrivateSuffix}.");
+                }
 
-                    if (success)
-                    {
-                        _logger.LogDebug("DNS Resolution succeeded");
-                        result = true;
-                    }
-                    else
-                    {
-                        _logger.LogError("DNS Resolution failed");
-                    }
+                if (success)
+                {
+                    _logger.LogDebug("DNS Resolution succeeded");
+                    result = true;
                 }
                 else
                 {
-                    _logger.LogError("Impossible to get a DnsResolver");
+                    _logger.LogError("DNS Resolution failed");
                 }
 
                 _logger.LogTrace("Method end");
@@ -131,50 +124,41 @@ namespace ClientConsoleAppV2.Classes
                 _logger.LogTrace("Method start");
 
                 // Use Queue messaging sender
-                var sender = _serviceProvider.GetService<IServiceBusClient>();
+                _logger.LogTrace("Got a IServiceBusClient instance");
 
-                if (sender != null)
+                if (_sbNamespace != null && _serviceBusClient.CreateClient(_sbNamespace, _senderClientId))
                 {
-                    _logger.LogTrace("Got a IServiceBusClient instance");
+                    _logger.LogTrace("ServiceBusClient created");
 
-                    if (_sbNamespace != null && sender.CreateClient(_sbNamespace, _senderClientId))
+                    // Sending 10 messages
+                    // IMPORTANT: There are 2 better ways to send several messages.
+                    // TODO: Use one of them for production: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#sending-a-batch-of-messages
+                    _logger.LogTrace("Sending 10 messages to the queue");
+
+                    for (var i = 1; i < 11; i++)
                     {
-                        _logger.LogTrace("ServiceBusClient created");
+                        _logger.LogTrace("Sending message #{@num} to the queue", i);
 
-                        // Sending 10 messages
-                        // IMPORTANT: There are 2 better ways to send several messages.
-                        // Use one of them for production: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme?view=azure-dotnet#sending-a-batch-of-messages
-                        _logger.LogTrace("Sending 10 messages to the queue");
+                        var messageContent = $"Message #{i} sent at {DateTime.Now:MM/dd/yyyy hh:mm tt}";
 
-                        for (var i = 1; i < 11; i++)
+                        var result = _sbQueue != null && await _serviceBusClient.SendMessageAsync(_sbQueue, messageContent);
+                        if (result)
                         {
-                            _logger.LogTrace("Sending message #{@num} to the queue", i);
-
-                            var messageContent = $"Message #{i} sent at {DateTime.Now:MM/dd/yyyy hh:mm tt}";
-
-                            var result = _sbQueue != null && await sender.SendMessageAsync(_sbQueue, messageContent);
-                            if (result)
-                            {
-                                _logger.LogInformation("Message sent");
-                            }
-
-                            // Wait 1 second
-                            Thread.Sleep(1000);
+                            _logger.LogInformation("Message sent");
                         }
 
-                        _logger.LogTrace("10 messages sent to the queue");
+                        // Wait 1 second
+                        Thread.Sleep(1000);
+                    }
 
-                        _logger.LogTrace("Disposing client");
-                        await sender.DisposeClientAsync();
-                    }
-                    else
-                    {
-                        _logger.LogError("Impossible to get a ServiceBusClient");
-                    }
+                    _logger.LogTrace("10 messages sent to the queue");
+
+                    _logger.LogTrace("Disposing client");
+                    await _serviceBusClient.DisposeClientAsync();
                 }
                 else
                 {
-                    _logger.LogError("Impossible to get a IServiceBusClient instance");
+                    _logger.LogError("Impossible to get a ServiceBusClient");
                 }
 
                 _logger.LogDebug("Sent a message to the Service Bus Queue");
@@ -192,45 +176,36 @@ namespace ClientConsoleAppV2.Classes
                 // Use Queue messaging receiver
                 _logger.LogDebug("Receiving the next FIFO message from the Queue");
 
-                var receiver = _serviceProvider.GetService<IServiceBusClient>();
+                _logger.LogTrace("Got a IServiceBusClient instance");
 
-                if (receiver != null)
+                if (_sbNamespace != null && _serviceBusClient.CreateClient(_sbNamespace, _receiverClientId))
                 {
-                    _logger.LogTrace("Got a IServiceBusClient instance");
+                    _logger.LogTrace("ServiceBusClient created");
 
-                    if (_sbNamespace != null && receiver.CreateClient(_sbNamespace, _receiverClientId))
+                    // Receiving a message
+                    _logger.LogTrace("Receiving 1 message from the queue");
+
+                    if (_sbQueue != null)
                     {
-                        _logger.LogTrace("ServiceBusClient created");
+                        var receivedMessage = await _serviceBusClient.ReceiveMessageAsync(_sbQueue);
 
-                        // Receiving a message
-                        _logger.LogTrace("Receiving 1 message from the queue");
-
-                        if (_sbQueue != null)
+                        if (receivedMessage != null)
                         {
-                            var receivedMessage = await receiver.ReceiveMessageAsync(_sbQueue);
-
-                            if (receivedMessage != null)
-                            {
-                                _logger.LogInformation("Received message body: {@body}",
-                                    receivedMessage.Body.ToString());
-                            }
-                            else
-                            {
-                                _logger.LogWarning("No message received from the queue: {@q_name}", _sbQueue);
-                            }
-
-                            _logger.LogTrace("Disposing client");
-                            await receiver.DisposeClientAsync();
+                            _logger.LogInformation("Received message body: {@body}",
+                                receivedMessage.Body.ToString());
                         }
-                    }
-                    else
-                    {
-                        _logger.LogError("Impossible to create a ServiceBusClient");
+                        else
+                        {
+                            _logger.LogWarning("No message received from the queue: {@q_name}", _sbQueue);
+                        }
+
+                        _logger.LogTrace("Disposing client");
+                        await _serviceBusClient.DisposeClientAsync();
                     }
                 }
                 else
                 {
-                    _logger.LogError("Impossible to get a IServiceBusClient instance");
+                    _logger.LogError("Impossible to create a ServiceBusClient");
                 }
 
                 _logger.LogDebug("Received the next FIFO message from the Queue");
@@ -248,32 +223,23 @@ namespace ClientConsoleAppV2.Classes
                 // Use Queue messaging receiver
                 _logger.LogDebug("Delete all messages from the Queue");
 
-                var receiver = _serviceProvider.GetService<IServiceBusClient>();
+                _logger.LogTrace("Got a IServiceBusClient instance");
 
-                if (receiver != null)
+                if (_sbNamespace != null && _serviceBusClient.CreateClient(_sbNamespace, _receiverClientId))
                 {
-                    _logger.LogTrace("Got a IServiceBusClient instance");
+                    _logger.LogTrace("ServiceBusClient created");
 
-                    if (_sbNamespace != null && receiver.CreateClient(_sbNamespace, _receiverClientId))
+                    if (_sbQueue != null)
                     {
-                        _logger.LogTrace("ServiceBusClient created");
+                        await _serviceBusClient.DeleteAllMessagesAsync(_sbQueue);
 
-                        if (_sbQueue != null)
-                        {
-                            await receiver.DeleteAllMessagesAsync(_sbQueue);
-
-                            _logger.LogTrace("Disposing client");
-                            await receiver.DisposeClientAsync();
-                        }
-                    }
-                    else
-                    {
-                        _logger.LogError("Impossible to create a ServiceBusClient");
+                        _logger.LogTrace("Disposing client");
+                        await _serviceBusClient.DisposeClientAsync();
                     }
                 }
                 else
                 {
-                    _logger.LogError("Impossible to get a IServiceBusClient instance");
+                    _logger.LogError("Impossible to create a ServiceBusClient");
                 }
 
                 _logger.LogDebug("Deleted all messages from the Queue");

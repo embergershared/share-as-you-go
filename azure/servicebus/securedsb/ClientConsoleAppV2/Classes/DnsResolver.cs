@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientConsoleAppV2.Classes
 {
-    internal class DnsResolver : IDnsResolver
+    public class DnsResolver : IDnsResolver
     {
         // Private members
         private readonly ILogger _logger;

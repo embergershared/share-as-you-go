@@ -18,10 +18,10 @@ namespace ClientConsoleAppV2Tests
             // Arrange
             var expected = normalResult;
             var logger = Mock.Of<ILogger<DnsResolver>>();
-            var mockDnsResolver = new DnsResolver(logger);
+            var sut = new DnsResolver(logger);
 
             // Act
-            var actual = mockDnsResolver.ResolveAsync(fqdn).Result;
+            var actual = sut.ResolveAsync(fqdn).Result;
 
             // Assert
             Assert.AreEqual(expected, actual);

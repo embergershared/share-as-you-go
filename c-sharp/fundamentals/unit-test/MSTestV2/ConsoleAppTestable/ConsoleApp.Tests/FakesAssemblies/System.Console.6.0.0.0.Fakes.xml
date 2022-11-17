@@ -1,0 +1,449 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Console.6.0.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:System.Fakes.ShimConsole">
+            <summary>Shim type of System.Console</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsole.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BackgroundColorGet">
+            <summary>Sets the Shim of Console.get_BackgroundColor()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BackgroundColorSetConsoleColor">
+            <summary>Sets the Shim of Console.set_BackgroundColor(ConsoleColor value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.Beep">
+            <summary>Sets the Shim of Console.Beep()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BeepInt32Int32">
+            <summary>Sets the Shim of Console.Beep(Int32 frequency, Int32 duration)</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsole.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsole.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BufferHeightGet">
+            <summary>Sets the Shim of Console.get_BufferHeight()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BufferHeightSetInt32">
+            <summary>Sets the Shim of Console.set_BufferHeight(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BufferWidthGet">
+            <summary>Sets the Shim of Console.get_BufferWidth()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.BufferWidthSetInt32">
+            <summary>Sets the Shim of Console.set_BufferWidth(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CancelKeyPressAddConsoleCancelEventHandler">
+            <summary>Sets the Shim of Console.add_CancelKeyPress(ConsoleCancelEventHandler value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CancelKeyPressRemoveConsoleCancelEventHandler">
+            <summary>Sets the Shim of Console.remove_CancelKeyPress(ConsoleCancelEventHandler value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CapsLockGet">
+            <summary>Sets the Shim of Console.get_CapsLock()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.Clear">
+            <summary>Sets the Shim of Console.Clear()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorLeftGet">
+            <summary>Sets the Shim of Console.get_CursorLeft()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorLeftSetInt32">
+            <summary>Sets the Shim of Console.set_CursorLeft(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorSizeGet">
+            <summary>Sets the Shim of Console.get_CursorSize()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorSizeSetInt32">
+            <summary>Sets the Shim of Console.set_CursorSize(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorTopGet">
+            <summary>Sets the Shim of Console.get_CursorTop()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorTopSetInt32">
+            <summary>Sets the Shim of Console.set_CursorTop(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorVisibleGet">
+            <summary>Sets the Shim of Console.get_CursorVisible()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.CursorVisibleSetBoolean">
+            <summary>Sets the Shim of Console.set_CursorVisible(Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ErrorGet">
+            <summary>Sets the Shim of Console.get_Error()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ForegroundColorGet">
+            <summary>Sets the Shim of Console.get_ForegroundColor()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ForegroundColorSetConsoleColor">
+            <summary>Sets the Shim of Console.set_ForegroundColor(ConsoleColor value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.GetCursorPosition">
+            <summary>Sets the Shim of Console.GetCursorPosition()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.InGet">
+            <summary>Sets the Shim of Console.get_In()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.InputEncodingGet">
+            <summary>Sets the Shim of Console.get_InputEncoding()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.InputEncodingSetEncoding">
+            <summary>Sets the Shim of Console.set_InputEncoding(Encoding value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.IsErrorRedirectedGet">
+            <summary>Sets the Shim of Console.get_IsErrorRedirected()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.IsInputRedirectedGet">
+            <summary>Sets the Shim of Console.get_IsInputRedirected()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.IsOutputRedirectedGet">
+            <summary>Sets the Shim of Console.get_IsOutputRedirected()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.KeyAvailableGet">
+            <summary>Sets the Shim of Console.get_KeyAvailable()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.LargestWindowHeightGet">
+            <summary>Sets the Shim of Console.get_LargestWindowHeight()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.LargestWindowWidthGet">
+            <summary>Sets the Shim of Console.get_LargestWindowWidth()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.MoveBufferAreaInt32Int32Int32Int32Int32Int32">
+            <summary>Sets the Shim of Console.MoveBufferArea(Int32 sourceLeft, Int32 sourceTop, Int32 sourceWidth, Int32 sourceHeight, Int32 targetLeft, Int32 targetTop)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.MoveBufferAreaInt32Int32Int32Int32Int32Int32CharConsoleColorConsoleColor">
+            <summary>Sets the Shim of Console.MoveBufferArea(Int32 sourceLeft, Int32 sourceTop, Int32 sourceWidth, Int32 sourceHeight, Int32 targetLeft, Int32 targetTop, Char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.NumberLockGet">
+            <summary>Sets the Shim of Console.get_NumberLock()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardError">
+            <summary>Sets the Shim of Console.OpenStandardError()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardErrorInt32">
+            <summary>Sets the Shim of Console.OpenStandardError(Int32 bufferSize)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardInput">
+            <summary>Sets the Shim of Console.OpenStandardInput()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardInputInt32">
+            <summary>Sets the Shim of Console.OpenStandardInput(Int32 bufferSize)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardOutput">
+            <summary>Sets the Shim of Console.OpenStandardOutput()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OpenStandardOutputInt32">
+            <summary>Sets the Shim of Console.OpenStandardOutput(Int32 bufferSize)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OutGet">
+            <summary>Sets the Shim of Console.get_Out()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OutputEncodingGet">
+            <summary>Sets the Shim of Console.get_OutputEncoding()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.OutputEncodingSetEncoding">
+            <summary>Sets the Shim of Console.set_OutputEncoding(Encoding value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.Read">
+            <summary>Sets the Shim of Console.Read()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ReadKey">
+            <summary>Sets the Shim of Console.ReadKey()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ReadKeyBoolean">
+            <summary>Sets the Shim of Console.ReadKey(Boolean intercept)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ReadLine">
+            <summary>Sets the Shim of Console.ReadLine()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.ResetColor">
+            <summary>Sets the Shim of Console.ResetColor()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetBufferSizeInt32Int32">
+            <summary>Sets the Shim of Console.SetBufferSize(Int32 width, Int32 height)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetCursorPositionInt32Int32">
+            <summary>Sets the Shim of Console.SetCursorPosition(Int32 left, Int32 top)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetErrorTextWriter">
+            <summary>Sets the Shim of Console.SetError(TextWriter newError)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetInTextReader">
+            <summary>Sets the Shim of Console.SetIn(TextReader newIn)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetOutTextWriter">
+            <summary>Sets the Shim of Console.SetOut(TextWriter newOut)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetWindowPositionInt32Int32">
+            <summary>Sets the Shim of Console.SetWindowPosition(Int32 left, Int32 top)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.SetWindowSizeInt32Int32">
+            <summary>Sets the Shim of Console.SetWindowSize(Int32 width, Int32 height)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.TitleGet">
+            <summary>Sets the Shim of Console.get_Title()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.TitleSetString">
+            <summary>Sets the Shim of Console.set_Title(String value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.TreatControlCAsInputGet">
+            <summary>Sets the Shim of Console.get_TreatControlCAsInput()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.TreatControlCAsInputSetBoolean">
+            <summary>Sets the Shim of Console.set_TreatControlCAsInput(Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowHeightGet">
+            <summary>Sets the Shim of Console.get_WindowHeight()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowHeightSetInt32">
+            <summary>Sets the Shim of Console.set_WindowHeight(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowLeftGet">
+            <summary>Sets the Shim of Console.get_WindowLeft()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowLeftSetInt32">
+            <summary>Sets the Shim of Console.set_WindowLeft(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowTopGet">
+            <summary>Sets the Shim of Console.get_WindowTop()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowTopSetInt32">
+            <summary>Sets the Shim of Console.set_WindowTop(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowWidthGet">
+            <summary>Sets the Shim of Console.get_WindowWidth()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WindowWidthSetInt32">
+            <summary>Sets the Shim of Console.set_WindowWidth(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteBoolean">
+            <summary>Sets the Shim of Console.Write(Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteChar">
+            <summary>Sets the Shim of Console.Write(Char value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteCharArray">
+            <summary>Sets the Shim of Console.Write(Char[] buffer)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteCharArrayInt32Int32">
+            <summary>Sets the Shim of Console.Write(Char[] buffer, Int32 index, Int32 count)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteDecimal">
+            <summary>Sets the Shim of Console.Write(Decimal value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteDouble">
+            <summary>Sets the Shim of Console.Write(Double value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteInt32">
+            <summary>Sets the Shim of Console.Write(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteInt64">
+            <summary>Sets the Shim of Console.Write(Int64 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLine">
+            <summary>Sets the Shim of Console.WriteLine()</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineBoolean">
+            <summary>Sets the Shim of Console.WriteLine(Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineChar">
+            <summary>Sets the Shim of Console.WriteLine(Char value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineCharArray">
+            <summary>Sets the Shim of Console.WriteLine(Char[] buffer)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineCharArrayInt32Int32">
+            <summary>Sets the Shim of Console.WriteLine(Char[] buffer, Int32 index, Int32 count)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineDecimal">
+            <summary>Sets the Shim of Console.WriteLine(Decimal value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineDouble">
+            <summary>Sets the Shim of Console.WriteLine(Double value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineInt32">
+            <summary>Sets the Shim of Console.WriteLine(Int32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineInt64">
+            <summary>Sets the Shim of Console.WriteLine(Int64 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineObject">
+            <summary>Sets the Shim of Console.WriteLine(Object value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineSingle">
+            <summary>Sets the Shim of Console.WriteLine(Single value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineString">
+            <summary>Sets the Shim of Console.WriteLine(String value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineStringObject">
+            <summary>Sets the Shim of Console.WriteLine(String format, Object arg0)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineStringObjectArray">
+            <summary>Sets the Shim of Console.WriteLine(String format, Object[] arg)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineStringObjectObject">
+            <summary>Sets the Shim of Console.WriteLine(String format, Object arg0, Object arg1)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineStringObjectObjectObject">
+            <summary>Sets the Shim of Console.WriteLine(String format, Object arg0, Object arg1, Object arg2)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineUInt32">
+            <summary>Sets the Shim of Console.WriteLine(UInt32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteLineUInt64">
+            <summary>Sets the Shim of Console.WriteLine(UInt64 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteObject">
+            <summary>Sets the Shim of Console.Write(Object value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteSingle">
+            <summary>Sets the Shim of Console.Write(Single value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteString">
+            <summary>Sets the Shim of Console.Write(String value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteStringObject">
+            <summary>Sets the Shim of Console.Write(String format, Object arg0)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteStringObjectArray">
+            <summary>Sets the Shim of Console.Write(String format, Object[] arg)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteStringObjectObject">
+            <summary>Sets the Shim of Console.Write(String format, Object arg0, Object arg1)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteStringObjectObjectObject">
+            <summary>Sets the Shim of Console.Write(String format, Object arg0, Object arg1, Object arg2)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteUInt32">
+            <summary>Sets the Shim of Console.Write(UInt32 value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsole.WriteUInt64">
+            <summary>Sets the Shim of Console.Write(UInt64 value)</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleCancelEventArgs">
+            <summary>Shim type of System.ConsoleCancelEventArgs</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventArgs.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventArgs.#ctor(System.ConsoleCancelEventArgs)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleCancelEventArgs.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.AllInstances.CancelGet">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.get_Cancel(ConsoleCancelEventArgs this)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.AllInstances.CancelSetBoolean">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.set_Cancel(ConsoleCancelEventArgs this, Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.AllInstances.SpecialKeyGet">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.get_SpecialKey(ConsoleCancelEventArgs this)</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.CancelGet">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.get_Cancel(ConsoleCancelEventArgs this)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.CancelSetBoolean">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.set_Cancel(ConsoleCancelEventArgs this, Boolean value)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.Constructor">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.ConsoleCancelEventArgs(ConsoleCancelEventArgs this)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventArgs.SpecialKeyGet">
+            <summary>Sets the Shim of ConsoleCancelEventArgs.get_SpecialKey(ConsoleCancelEventArgs this)</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleCancelEventHandler">
+            <summary>Shim type of System.ConsoleCancelEventHandler</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.#ctor(System.ConsoleCancelEventHandler)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleCancelEventHandler.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.AllInstances.BeginInvokeObjectConsoleCancelEventArgsAsyncCallbackObject">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.BeginInvoke(ConsoleCancelEventHandler this, Object sender, ConsoleCancelEventArgs e, AsyncCallback callback, Object object)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.AllInstances.EndInvokeIAsyncResult">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.EndInvoke(ConsoleCancelEventHandler this, IAsyncResult result)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.AllInstances.InvokeObjectConsoleCancelEventArgs">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.Invoke(ConsoleCancelEventHandler this, Object sender, ConsoleCancelEventArgs e)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.BeginInvokeObjectConsoleCancelEventArgsAsyncCallbackObject">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.BeginInvoke(ConsoleCancelEventHandler this, Object sender, ConsoleCancelEventArgs e, AsyncCallback callback, Object object)</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.Bind(System.ICloneable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleCancelEventHandler.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.ConstructorObjectIntPtr">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.ConsoleCancelEventHandler(ConsoleCancelEventHandler this, Object object, IntPtr method)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.EndInvokeIAsyncResult">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.EndInvoke(ConsoleCancelEventHandler this, IAsyncResult result)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleCancelEventHandler.InvokeObjectConsoleCancelEventArgs">
+            <summary>Sets the Shim of ConsoleCancelEventHandler.Invoke(ConsoleCancelEventHandler this, Object sender, ConsoleCancelEventArgs e)</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleKeyInfo">
+            <summary>Shim type of System.ConsoleKeyInfo</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleKeyInfo.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="T:System.Fakes.ShimConsoleKeyInfo.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleKeyInfo.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Fakes.ShimConsoleKeyInfo.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleKeyInfo.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleKeyInfo.EqualityOpConsoleKeyInfoConsoleKeyInfo">
+            <summary>Sets the Shim of ConsoleKeyInfo.op_Equality(ConsoleKeyInfo a, ConsoleKeyInfo b)</summary>
+        </member>
+        <member name="P:System.Fakes.ShimConsoleKeyInfo.InequalityOpConsoleKeyInfoConsoleKeyInfo">
+            <summary>Sets the Shim of ConsoleKeyInfo.op_Inequality(ConsoleKeyInfo a, ConsoleKeyInfo b)</summary>
+        </member>
+    </members>
+</doc>

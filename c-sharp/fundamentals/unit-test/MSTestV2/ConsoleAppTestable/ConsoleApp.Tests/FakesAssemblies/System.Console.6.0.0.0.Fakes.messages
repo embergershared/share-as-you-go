@@ -1,0 +1,3 @@
+D:\Git\GitHub\embergershared\share-as-you-go\c-sharp\fundamentals\unit-test\MSTestV2\AzureMocking\ConsoleApp.Tests\Fakes\System.Console.fakes : warning : Cannot generate stub for System.Console: Type has no Constructors visible to the assembly. The Constructor itself or a parameter may not be visible..
+D:\Git\GitHub\embergershared\share-as-you-go\c-sharp\fundamentals\unit-test\MSTestV2\AzureMocking\ConsoleApp.Tests\Fakes\System.Console.fakes : warning : Cannot generate stub for System.ConsoleCancelEventArgs: Type is sealed.
+D:\Git\GitHub\embergershared\share-as-you-go\c-sharp\fundamentals\unit-test\MSTestV2\AzureMocking\ConsoleApp.Tests\Fakes\System.Console.fakes : warning : Cannot generate stub for System.ConsoleCancelEventHandler: Type is sealed.

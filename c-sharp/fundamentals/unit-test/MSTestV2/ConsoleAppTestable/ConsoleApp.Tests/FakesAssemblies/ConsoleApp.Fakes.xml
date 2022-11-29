@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ConsoleApp.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:ConsoleApp.Classes.Fakes.ShimConsoleWrapper">
+            <summary>Shim type of ConsoleApp.Classes.ConsoleWrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.#ctor(ConsoleApp.Classes.ConsoleWrapper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.Clear">
+            <summary>Sets the Shim of ConsoleWrapper.Clear(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.OutputEncodingGet">
+            <summary>Sets the Shim of ConsoleWrapper.get_OutputEncoding(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.OutputEncodingSetEncoding">
+            <summary>Sets the Shim of ConsoleWrapper.set_OutputEncoding(ConsoleWrapper this, Encoding value)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.ReadKey">
+            <summary>Sets the Shim of ConsoleWrapper.ReadKey(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.ReadLine">
+            <summary>Sets the Shim of ConsoleWrapper.ReadLine(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.WriteLineString">
+            <summary>Sets the Shim of ConsoleWrapper.WriteLine(ConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.AllInstances.WriteString">
+            <summary>Sets the Shim of ConsoleWrapper.Write(ConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.Bind(ConsoleApp.Interfaces.IConsoleWrapper)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.Clear">
+            <summary>Sets the Shim of ConsoleWrapper.Clear(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.Constructor">
+            <summary>Sets the Shim of ConsoleWrapper.ConsoleWrapper(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.OutputEncodingGet">
+            <summary>Sets the Shim of ConsoleWrapper.get_OutputEncoding(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.OutputEncodingSetEncoding">
+            <summary>Sets the Shim of ConsoleWrapper.set_OutputEncoding(ConsoleWrapper this, Encoding value)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.ReadKey">
+            <summary>Sets the Shim of ConsoleWrapper.ReadKey(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.ReadLine">
+            <summary>Sets the Shim of ConsoleWrapper.ReadLine(ConsoleWrapper this)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.WriteLineString">
+            <summary>Sets the Shim of ConsoleWrapper.WriteLine(ConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimConsoleWrapper.WriteString">
+            <summary>Sets the Shim of ConsoleWrapper.Write(ConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="T:ConsoleApp.Classes.Fakes.ShimMainBootstrapper">
+            <summary>Shim type of ConsoleApp.Classes.MainBootstrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.#ctor(ConsoleApp.Classes.MainBootstrapper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.AllInstances.RunStringArray">
+            <summary>Sets the Shim of MainBootstrapper.Run(MainBootstrapper this, String[] args)</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.Bind(ConsoleApp.Interfaces.IMainBootstrapper)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.ConstructorIConsoleWrapper">
+            <summary>Sets the Shim of MainBootstrapper.MainBootstrapper(MainBootstrapper this, IConsoleWrapper console)</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.ShimMainBootstrapper.RunStringArray">
+            <summary>Sets the Shim of MainBootstrapper.Run(MainBootstrapper this, String[] args)</summary>
+        </member>
+        <member name="T:ConsoleApp.Classes.Fakes.StubConsoleWrapper">
+            <summary>Stub type of ConsoleApp.Classes.ConsoleWrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.StubConsoleWrapper.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubConsoleWrapper.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.StubConsoleWrapper.InitializeStub">
+            <summary>Initializes a new instance of type StubConsoleWrapper</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubConsoleWrapper.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubConsoleWrapper.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:ConsoleApp.Classes.Fakes.StubMainBootstrapper">
+            <summary>Stub type of ConsoleApp.Classes.MainBootstrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.StubMainBootstrapper.#ctor(ConsoleApp.Interfaces.IConsoleWrapper)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubMainBootstrapper.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:ConsoleApp.Classes.Fakes.StubMainBootstrapper.InitializeStub">
+            <summary>Initializes a new instance of type StubMainBootstrapper</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubMainBootstrapper.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:ConsoleApp.Classes.Fakes.StubMainBootstrapper.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper">
+            <summary>Stub type of ConsoleApp.Interfaces.IConsoleWrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.#ctor">
+            <summary>Initializes a new instance of type StubIConsoleWrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.AttachBackingFieldToOutputEncoding">
+            <summary>Attaches delegates to emulate StubIConsoleWrapper.OutputEncoding as a property with a backing field.</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.Clear">
+            <summary>Sets the stub of IConsoleWrapper.Clear(IConsoleWrapper this)</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#Clear">
+            <summary>Sets the Stub of IConsoleWrapper.Clear(IConsoleWrapper this)</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#ReadKey">
+            <summary>Sets the Stub of IConsoleWrapper.ReadKey(IConsoleWrapper this)</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#ReadLine">
+            <summary>Sets the Stub of IConsoleWrapper.ReadLine(IConsoleWrapper this)</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#Write(System.String)">
+            <summary>Sets the Stub of IConsoleWrapper.Write(IConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#WriteLine(System.String)">
+            <summary>Sets the Stub of IConsoleWrapper.WriteLine(IConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="P:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ConsoleApp#Interfaces#IConsoleWrapper#OutputEncoding">
+            <summary>Sets the stub of IConsoleWrapper.get_OutputEncoding(IConsoleWrapper this)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.OutputEncodingGet">
+            <summary>Sets the stub of IConsoleWrapper.get_OutputEncoding(IConsoleWrapper this)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.OutputEncodingSetEncoding">
+            <summary>Sets the stub of IConsoleWrapper.set_OutputEncoding(IConsoleWrapper this, Encoding value)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ReadKey">
+            <summary>Sets the stub of IConsoleWrapper.ReadKey(IConsoleWrapper this)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.ReadLine">
+            <summary>Sets the stub of IConsoleWrapper.ReadLine(IConsoleWrapper this)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.WriteLineString">
+            <summary>Sets the stub of IConsoleWrapper.WriteLine(IConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIConsoleWrapper.WriteString">
+            <summary>Sets the stub of IConsoleWrapper.Write(IConsoleWrapper this, String value)</summary>
+        </member>
+        <member name="T:ConsoleApp.Interfaces.Fakes.StubIMainBootstrapper">
+            <summary>Stub type of ConsoleApp.Interfaces.IMainBootstrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIMainBootstrapper.#ctor">
+            <summary>Initializes a new instance of type StubIMainBootstrapper</summary>
+        </member>
+        <member name="M:ConsoleApp.Interfaces.Fakes.StubIMainBootstrapper.ConsoleApp#Interfaces#IMainBootstrapper#Run(System.String[])">
+            <summary>Sets the Stub of IMainBootstrapper.Run(IMainBootstrapper this, String[] args)</summary>
+        </member>
+        <member name="F:ConsoleApp.Interfaces.Fakes.StubIMainBootstrapper.RunStringArray">
+            <summary>Sets the stub of IMainBootstrapper.Run(IMainBootstrapper this, String[] args)</summary>
+        </member>
+    </members>
+</doc>

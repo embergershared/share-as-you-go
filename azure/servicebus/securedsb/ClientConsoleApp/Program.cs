@@ -299,7 +299,7 @@ namespace ClientConsoleApp
             //    .AddLogging(configure => configure.AddSerilog());
             //var serviceProvider = serviceCollection.BuildServiceProvider();
             //var logger = serviceProvider.GetService<ILogger<AnyClass>>();
-            serviceCollection.AddSingleton(typeof(ILogger), logger);
+            //serviceCollection.AddSingleton(typeof(ILogger), logger);
 
 
             // Dependency Injection

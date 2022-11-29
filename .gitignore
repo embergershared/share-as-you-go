@@ -189,3 +189,5 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 _NCrunch*
+/c-sharp/fundamentals/unit-test/Exercises/ClassesTestsDB/ClassesTestsDB.jfm
+/c-sharp/fundamentals/unit-test/MSTestV2/PS-CS9-UnitTesting/ClassesTestsDB/ClassesTestsDB.jfm

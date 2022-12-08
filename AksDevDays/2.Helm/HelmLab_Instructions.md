@@ -111,6 +111,8 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
 
   - Replace the default section:
 
+  FROM:
+
   ```yaml
   replicaCount: 1
 
@@ -121,7 +123,7 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
     tag: ""
   ```
 
-  WITH
+  TO:
 
   ```yaml
   replicaCount: 1
@@ -162,6 +164,17 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
   ```
 
 - Update the `templates/deployment.yaml` to set the redis environment variable value:
+
+  FROM:
+
+  ```yaml
+  ...
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  ports:
+  ...
+  ```
+
+  TO:
 
   ```yaml
   ...

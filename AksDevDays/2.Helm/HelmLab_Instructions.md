@@ -147,21 +147,21 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
 
   - Change service.type to LoadBalancer:
 
-    FROM:
+      FROM:
 
-    ```yaml
-    service:
-      type: ClusterIP
-      port: 80
-    ```
+      ```yaml
+      service:
+        type: ClusterIP
+        port: 80
+      ```
 
-    TO:
+      TO:
 
-    ```yaml
-    service:
-      type: LoadBalancer
-      port: 80
-    ```
+      ```yaml
+      service:
+        type: LoadBalancer
+        port: 80
+      ```
 
 - Update the `templates/deployment.yaml` to set the redis environment variable value:
 

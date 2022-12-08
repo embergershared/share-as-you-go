@@ -1,0 +1,1 @@
+Message="The policy definition 'Deny Role Assignments if ! by SPN' rule is invalid. The value of 'field' property 'ObjectType' of the policy rule must be one of 'Name, Type, Location, Tags, Kind, FullName, identity.type, identity.userAssignedIdentities, id' or an alias, e.g. \"Microsoft.Compute/virtualMachines/imagePublisher\"."

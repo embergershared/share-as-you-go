@@ -1,0 +1,61 @@
+AKS Dev Day - Lab Notes
+
+*************************************************************************************************
+Part I Introduction to Kubernetes on Azure
+Lab 1 - Deploy a containerized application to AKS
+* Prior to beginning the exercise, the student will need to have their Azure subscription ready to go and they will need to create a storage account when they start Cloud Shell
+* The student will need to have the follow resource providers registered in their subscription: Microsoft.ContainerRegistry, Microsoft.ContainerService
+* Student should use LOCATION=eastus
+* When creating the deployment manifest, the student should READ from 4 down to 9 and then paste in the code on step 9.
+* When creating the service manifest, READ from 4 down to 7 and then put in the code at step 7.
+* When creating the ingress manifest, READ from 3 down to 7 and put that code in. HOWEVER, in step 5, run that command to get the FQDN. You need that before you save the code you pasted in.
+* DO NOT DELETE THE RESOURCES, you will need it for the HPA lab.
+
+Lab 2 - Application and package management Helm
+
+Install a Wordpress Blog
+
+1.helm repo add bitnami https://charts.bitnami.com/bitnami
+
+2.helm search hub bitnami/wordpress
+
+3.helm install my-blog bitnami/wordpress
+
+   1.Review output and wait for load balancer to get an ip address
+
+4.helm list
+
+  1.Talk about revisions and rollbacks for entire applications
+
+5. helm show values bitnami/wordpress
+
+*************************************************************************************************
+Part 3: AKS application and cluster scalability
+Lab 3 - Application Scalability on AKS with HorizontalPodAutoscalers
+* You will use the cluster AND the contoso-website application from Lab 1 to do the HPA scaling
+* Before you start doing the exercise, you should scale down the number of replicas that are in use from Lab 1. Scale it down to 1: kubectl scale --replicas=1 deployment/contoso-website
+* Although the documentation doesn't say say, you need to run touch hpa.yaml to create the initial empty file
+* After checking the initial result of the hpa on the cluster, BREW needs to be installed. We need this to have an application that will cause stress on the web app. The instructions for installing Brew are here: (Brew is used to run an app named 'hey') https://www.how2shout.com/how-to/how-to-install-homebrew-on-linux-or-wsl.html#:~:text=Install%20Homebrew%20on%20Linux%201%20Step%201%3A%20Open,Linux%20or%20Windows%20subsystem%20for%20Linux.%20See%20More.
+a. Start at Step 3: In the Cloud Shell window run:
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+b. test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+c. test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+d. test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+e. echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+f. brew install hey
+
+* Open up a new Cloud Shell session
+* In the new Cloud Shell session, type in: kubectl get hpa contoso-website -w
+* In the original Cloud Shell Window, type in: hey -n 100000 -c 100 -m GET http://contoso.d9dfe3a73903433589b8.eastus.aksapp.io/
+* While the hey command is running, go back to the second command shell and watch the pods scale, the hey command will eventually stop and the pods will scale back down automatically
+
+* DO NOT CLEAN UP RESOURCES at the end of Lab 3
+
+Lab 4 - Scale container applications in AKS using KEDA
+* For this lab, the student is either going to have to install Docker on their desktop, or they will need to run the script at this location to create a VM in Azure that has Docker installed. https://azure.microsoft.com/en-us/resources/templates/docker-simple-on-ubuntu/
+* In the 'Create a list in Redis' exercise, this is where you need to create a local running container. As an instructor, you should already have Docker installed on your machine, so you will need to get your redis host FQDN and the Redis Key, you can get this from the portal.
+
+
+* From your local machine, run the commands in the 'Create a list in Redis' section to create the container and upload the list.
+
+

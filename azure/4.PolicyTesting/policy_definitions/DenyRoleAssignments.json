@@ -1,0 +1,42 @@
+{
+  "properties": {
+    "displayName": "Deny Role Assignments creation except if for given Principal",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "This Custom Azure Policy will Deny Role Assignments creation if these role assignments are not for 1 given Principal Id. This policy allows to restrict the creation of Role assignments to only 1 Principal (a Service Principal used by a CD pipeline, for example) on the scope covered by the Policy assignment.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Automation"
+    },
+    "parameters": {
+      "principalId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Allowed Principal Id",
+          "description": "Id of the only principal authorized to create Role Assignments"
+        }
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "like": "Microsoft.Authorization/roleAssignments"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Authorization/roleAssignments/principalId",
+              "like": "[parameters('principalId')]"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  },
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "Deny Role Assignments if !(for 1 principal)"
+}

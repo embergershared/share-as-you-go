@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contoso-microservice
+spec:
+  replicas: 1                   # Here we are telling K8S the number of containers to process the Redis list items
+  selector:                     # Define the wrapping strategy
+    matchLabels:                # Match all pods with the defined labels
+      app: contoso-microservice # Labels follow the `name: value` template
+  template:                     # This is the template of the pod inside the Deployment
+    metadata:
+      labels:
+        app: contoso-microservice
+    spec:
+      containers:
+        - image: mcr.microsoft.com/mslearn/samples/redis-client:latest
+          name: contoso-microservice
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          env:
+            - name: REDIS_HOST
+              value: "redis-contoso-video-1285562.redis.cache.windows.net" # *** REPLACE with your value ***
+            - name: REDIS_PORT
+              value: "6379"                                        # *** REPLACE with your value ***
+            - name: REDIS_LIST
+              value: "keda"                                        # *** REPLACE with your value ***
+            - name: REDIS_KEY
+              value: "wO89muR7fw5plQVHVjBFIjDLAykv5JHwYAzCaIa8ibM="  # *** REPLACE with your value ***

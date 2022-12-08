@@ -1,0 +1,19 @@
+#ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: contoso-website
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: contoso.23aede0a825d49ebaf34.eastus.aksapp.io
+      http:
+        paths:
+          - backend: # How the ingress will handle the requests
+              service:
+                name: contoso-website # Which service the request will be forwarded to
+                port:
+                  name: http # Which port in that service
+            path: / # Which path is this rule referring to
+            pathType: Prefix # See more at https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types

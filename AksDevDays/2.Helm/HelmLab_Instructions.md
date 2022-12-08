@@ -111,80 +111,80 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
 
   - Replace the default section:
 
-  FROM:
+    FROM:
 
-  ```yaml
-  replicaCount: 1
+    ```yaml
+    replicaCount: 1
 
-  image:
-    repository: nginx
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
-  ```
-
-  TO:
-
-  ```yaml
-  replicaCount: 1
-  backendName: azure-vote-backend-master
-  redis:
     image:
-      registry: mcr.microsoft.com
-      repository: oss/bitnami/redis
-      tag: 6.0.8
-    fullnameOverride: azure-vote-backend
-    auth:
-      enabled: false
+      repository: nginx
+      pullPolicy: IfNotPresent
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: ""
+    ```
 
-  image:
-    repository: acruseaksdevdays.azurecr.io/azure-vote-front
-    pullPolicy: IfNotPresent
-    tag: "v1"
-  ```
+    TO:
 
-  **Important Note**: see that the repository for the image (`image.repository`) uses our ACR login server value noted earlier.
+    ```yaml
+    replicaCount: 1
+    backendName: azure-vote-backend-master
+    redis:
+      image:
+        registry: mcr.microsoft.com
+        repository: oss/bitnami/redis
+        tag: 6.0.8
+      fullnameOverride: azure-vote-backend
+      auth:
+        enabled: false
+
+    image:
+      repository: acruseaksdevdays.azurecr.io/azure-vote-front
+      pullPolicy: IfNotPresent
+      tag: "v1"
+    ```
+
+    **Important Note**: see that the repository for the image (`image.repository`) uses our ACR login server value noted earlier.
 
   - Change service.type to LoadBalancer:
 
-  FROM:
+    FROM:
 
-  ```yaml
-  service:
-    type: ClusterIP
-    port: 80
-  ```
+    ```yaml
+    service:
+      type: ClusterIP
+      port: 80
+    ```
 
-  TO:
+    TO:
 
-  ```yaml
-  service:
-    type: LoadBalancer
-    port: 80
-  ```
+    ```yaml
+    service:
+      type: LoadBalancer
+      port: 80
+    ```
 
 - Update the `templates/deployment.yaml` to set the redis environment variable value:
 
-  FROM:
+    FROM:
 
-  ```yaml
-  ...
-  imagePullPolicy: {{ .Values.image.pullPolicy }}
-  ports:
-  ...
-  ```
+    ```yaml
+    ...
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    ports:
+    ...
+    ```
 
-  TO:
+    TO:
 
-  ```yaml
-  ...
-  imagePullPolicy: {{ .Values.image.pullPolicy }}
-  env:
-  - name: REDIS
-    value: {{ .Values.backendName }}
-  ports:
-  ...
-  ```
+    ```yaml
+    ...
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    env:
+    - name: REDIS
+      value: {{ .Values.backendName }}
+    ports:
+    ...
+    ```
 
 ### Test the Helm chart
 

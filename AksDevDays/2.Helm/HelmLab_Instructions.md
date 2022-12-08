@@ -145,7 +145,7 @@ Additionally, you will see a `redis-17.3.14.tgz` file added to the `charts/` fol
 
     **Important Note**: see that the repository for the image (`image.repository`) uses our ACR login server value noted earlier.
 
-  - Change service.type to LoadBalancer:
+  - Change `service.type` to LoadBalancer:
 
       FROM:
 

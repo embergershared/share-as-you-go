@@ -29,7 +29,7 @@ It requires the creation of a Speech Service instance in Azure:
 
 6. You'll get the translated text back in `es` (espanol) (can be changed in line `46` of `program.cs`)
 
-> ![Result](https://github.com/embergershared/share-as-you-go/blob/main/ai/anouncement/media/2023-08-17_124609.png)
+    ![Result](https://github.com/embergershared/share-as-you-go/blob/main/ai/anouncement/media/2023-08-17_124609.png)
 
 ## Additional considerations
 
@@ -40,4 +40,4 @@ As the Speech service is hosted in Azure, it comes with all the Azure security f
 - `Managed identity`
 - `Encryption with Customer Managed Keys`
 
-It can easily be integrated in a secure solution, for example, one that would run this code in a container hosted in an Azure Kubernetes Service (AKS).
+It can easily be integrated in a secure solution, for example, one that would run this code in a container hosted in an [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service).

@@ -44,6 +44,7 @@ namespace announcement
             var speechTranslationConfig = SpeechTranslationConfig.FromSubscription(SpeechKey, SpeechRegion);
             speechTranslationConfig.SpeechRecognitionLanguage = "en-US";
             speechTranslationConfig.AddTargetLanguage("es");
+            speechTranslationConfig.AddTargetLanguage("fr");
 
             using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
             using var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, audioConfig);

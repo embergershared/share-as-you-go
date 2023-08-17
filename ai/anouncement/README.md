@@ -8,7 +8,7 @@ This code is a straight forward project of the code from the article.
 
 It requires the creation of a Speech Service instance in Azure:
 
-    ![Azure Speech](https://github.com/embergershared/share-as-you-go/blob/main/ai/anouncement/media/2023-08-17_123132.png)
+  ![Azure Speech](https://github.com/embergershared/share-as-you-go/blob/main/ai/anouncement/media/2023-08-17_123132.png)
 
 ## Instructions
 

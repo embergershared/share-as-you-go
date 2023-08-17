@@ -8,7 +8,7 @@ This code is a straight forward project of the code from the article.
 
 It requires the creation of a Speech Service instance in Azure:
 
-> ![Azure Speech](/share-as-you-go/ai/anouncement/media/2023-08-17_123132.png)
+> ![Azure Speech](https://github.com/embergershared/share-as-you-go/blob/main/ai/anouncement/media/2023-08-17_123132.png)
 
 ## Instructions
 
@@ -25,11 +25,11 @@ It requires the creation of a Speech Service instance in Azure:
 
 5. When seeing this screen, talk in the `en-US` language (can be changed in line `45` of `program.cs`)
 
-> ![Prompt](/share-as-you-go/ai/anouncement/media/2023-08-17_124449.png)
+> ![Prompt](https://github.com/embergershared/share-as-you-go/ai/anouncement/media/2023-08-17_124449.png)
 
 6. You'll get the translated text back in `es` (espanol) (can be changed in line `46` of `program.cs`)
 
-> ![Result](/share-as-you-go/ai/anouncement/media/2023-08-17_124609.png)
+> ![Result](https://github.com/embergershared/share-as-you-go/ai/anouncement/media/2023-08-17_124609.png)
 
 ## Additional considerations
 

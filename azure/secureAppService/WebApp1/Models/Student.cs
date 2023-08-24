@@ -1,4 +1,7 @@
-﻿namespace WebApp1.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebApp1.Models
 {
     public class Student
     {

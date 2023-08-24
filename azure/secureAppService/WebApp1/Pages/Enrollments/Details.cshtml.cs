@@ -8,37 +8,35 @@ using Microsoft.EntityFrameworkCore;
 using WebApp1.Data;
 using WebApp1.Models;
 
-namespace WebApp1.Pages.Students
+namespace WebApp1.Pages.Enrollments
 {
     public class DetailsModel : PageModel
     {
-        private readonly WebApp1.Data.WebApp1EfDbContext _efDbContext;
+        private readonly WebApp1.Data.WebApp1EfDbContext _context;
 
-        public DetailsModel(WebApp1.Data.WebApp1EfDbContext efDbContext)
+        public DetailsModel(WebApp1.Data.WebApp1EfDbContext context)
         {
-            _efDbContext = efDbContext;
+            _context = context;
         }
 
-      public Student Student { get; set; } = default!; 
+      public Enrollment Enrollment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _efDbContext.Students == null)
+            if (id == null || _context.Enrollments == null)
             {
                 return NotFound();
             }
 
-            var student = await _efDbContext.Students.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (student == null)
+            var enrollment = await _context.Enrollments.FirstOrDefaultAsync(m => m.EnrollmentID == id);
+            if (enrollment == null)
             {
                 return NotFound();
             }
             else 
             {
-                Student = student;
+                Enrollment = enrollment;
             }
-
             return Page();
         }
     }

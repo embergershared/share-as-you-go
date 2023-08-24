@@ -28,7 +28,13 @@ namespace WebApp1.Pages.Students
                 return NotFound();
             }
 
-            var student = await _efDbContext.Students.FirstOrDefaultAsync(m => m.ID == id);
+            //var student = await _efDbContext.Students.FirstOrDefaultAsync(m => m.ID == id);
+
+            var student = await _efDbContext.Students
+                .Include(s => s.Enrollments)
+                .ThenInclude(e => e.Course)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (student == null)
             {

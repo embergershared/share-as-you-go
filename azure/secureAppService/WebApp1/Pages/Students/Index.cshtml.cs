@@ -23,9 +23,9 @@ namespace WebApp1.Pages.Students
 
         public async Task OnGetAsync()
         {
-            if (_efDbContext.Student != null)
+            if (_efDbContext.Students != null)
             {
-                Student = await _efDbContext.Student.ToListAsync();
+                Student = await _efDbContext.Students.ToListAsync();
             }
         }
     }

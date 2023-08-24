@@ -31,12 +31,12 @@ namespace WebApp1.Pages.Students
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _efDbContext.Student == null || Student == null)
+          if (!ModelState.IsValid || _efDbContext.Students == null || Student == null)
             {
                 return Page();
             }
 
-            _efDbContext.Student.Add(Student);
+            _efDbContext.Students.Add(Student);
             await _efDbContext.SaveChangesAsync();
 
             return RedirectToPage("./Index");

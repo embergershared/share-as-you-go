@@ -23,12 +23,12 @@ namespace WebApp1.Pages.Students
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _efDbContext.Student == null)
+            if (id == null || _efDbContext.Students == null)
             {
                 return NotFound();
             }
 
-            var student = await _efDbContext.Student.FirstOrDefaultAsync(m => m.ID == id);
+            var student = await _efDbContext.Students.FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();

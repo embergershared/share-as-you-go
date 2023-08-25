@@ -2,10 +2,10 @@
 @model WebApp1.Pages.Students.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Students";
 }
 
-<h1>Index</h1>
+<h1>Students list</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -46,3 +46,37 @@
 }
     </tbody>
 </table>
+
+<div class="text-center">
+    <h3>Some debug data</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Key
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div style='float: left; text-align: left'>EF Core Db Context</div>
+                </td>
+                <td>
+                    <div style='float: left; text-align: left'>@ViewData["EfContext"]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='float: left; text-align: left'>Connection String</div>
+                </td>
+                <td>
+                    <div style='float: left; text-align: left'>@ViewData["connString"]</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<WebApp1EfDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WebApp1EfDbContext") ?? throw new InvalidOperationException("Connection string 'WebApp1EfDbContext' not found."))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebApp1EfDbContext-MI") ?? throw new InvalidOperationException("Connection string 'WebApp1EfDbContext' not found."))
 );
 
 // Database exception filter

@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/a73ced30-c712-4405-8828-67a833b1e39a/resourceGroups/rg-use2-zachry-pcr2-in-appsvc-envisioning/providers/microsoft.insights/components/appins-use2-zachry-pcr2-in-appsvc-envisioning</ApplicationInsightsResourceId>
+    <UserSecretsId>f8bfe178-92a9-458d-883c-918ee8cbf0a1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />

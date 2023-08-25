@@ -50,12 +50,11 @@ namespace WebApp1.Pages.Students
             }
             var student = await _efDbContext.Students.FindAsync(id);
 
-            if (student != null)
-            {
-                Student = student;
-                _efDbContext.Students.Remove(Student);
-                await _efDbContext.SaveChangesAsync();
-            }
+            if (student == null) return RedirectToPage("./Index");
+
+            Student = student;
+            _efDbContext.Students.Remove(Student);
+            await _efDbContext.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

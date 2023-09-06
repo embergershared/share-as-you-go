@@ -1,0 +1,32 @@
+﻿@page
+@model WebApp1.Pages.AnomaliesModel
+@{
+    ViewData["Title"] = "Anomalies";
+}
+
+<h3>Detecting Anomalies</h3>
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Result
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div style="float: left; text-align: left">Anomaly Detection</div>
+            </td>
+            <td>
+                    <div style='float: left; text-align: left'>@ViewData["result"]</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

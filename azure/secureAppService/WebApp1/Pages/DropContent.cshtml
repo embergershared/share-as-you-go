@@ -1,0 +1,41 @@
+﻿@page
+@model WebApp1.Pages.DropContentModel
+@{
+    ViewData["Title"] = "Drop store content";
+}
+
+
+<h3>Some container manipulation</h3>
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Result
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div style="float: left; text-align: left">Container Creation</div>
+            </td>
+            <td>
+                    <div style='float: left; text-align: left'>@ViewData["actionDisplay"]</div>
+            </td>
+        </tr>
+@*         <tr>
+            <td>
+                <div style='float: left; text-align: left'>Connection String</div>
+            </td>
+            <td>
+                <div style='float: left; text-align: left'>@ViewData["connString"]</div>
+            </td>
+        </tr>
+ *@        </tbody>
+    </table>
+</div>

@@ -35,7 +35,7 @@ namespace WebApp1.Pages
                 new DefaultAzureCredential());
 
             // Creating a container
-            string containerName = "zachry-pcr2-poc_" + Guid.NewGuid().ToString();
+            string containerName = "zachry-pcr2-poc-" + Guid.NewGuid().ToString();
 
             // Create the container and return a container client object
             _ = await blobServiceClient.CreateBlobContainerAsync(containerName);

@@ -14,3 +14,4 @@
 
 - Add Authenticaton to your App Service [Add app authentication to your web app running on Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service)
 
+- [Configure your App Service or Azure Functions app to use Azure AD sign-in](https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad?tabs=workforce-tenant)

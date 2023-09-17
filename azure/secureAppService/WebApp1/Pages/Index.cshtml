@@ -20,10 +20,10 @@
         <div class="row no-gutters border mb-4">
             <div class="col p-4 d-flex flex-column position-static">
                 <p class="card-text mb-auto">
-                    It uses a Windows App Service, Private endpoints, Private DNS Zones, Managed Identity to connect to Storage Accounts and Azure SQL Database.
+                    It uses a Windows App Service, Private endpoints, Private DNS Zones, Managed Identity to connect to Storage Accounts and Azure SQL Database. For authentication, it uses the App Service authentication provider, linked to Azure AD with user.read permission on the Graph API.
                 </p>
                 <p>
-@*                    <a href="https://docs.microsoft.com/aspnet/core/data/ef-rp/intro" class="stretched-link">See the tutorial</a>
+                    @*                    <a href="https://docs.microsoft.com/aspnet/core/data/ef-rp/intro" class="stretched-link">See the tutorial</a>
 *@                </p>
             </div>
         </div>
@@ -35,7 +35,7 @@
                     It also uses a Function App to process files, a NAT Gateway for outbound access to the public internet through a known/defined Public IP, an Anomaly Detector for data series anomaly detection, required DNS records for SCM/management-deployment into App Service and Function App from Visual Studio and an Azure DevOps Pipeline.
                 </p>
                 <p>
-@*                    <a href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples" class="stretched-link">See project source code</a>
+                    @*                    <a href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples" class="stretched-link">See project source code</a>
 *@                </p>
             </div>
         </div>

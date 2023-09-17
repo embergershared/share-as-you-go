@@ -1,0 +1,10 @@
+﻿@using System.Security.Principal
+
+<ul class="navbar-nav">
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <li class="nav-item">
+        <span class="navbar-text text-dark">User: @User.Identity?.Name</span>
+    </li>
+}
+</ul>

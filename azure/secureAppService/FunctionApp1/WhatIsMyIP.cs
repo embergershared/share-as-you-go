@@ -1,14 +1,12 @@
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
 namespace FunctionApp1
 {
-    public class WhatIsMyIP
+    public class WhatIsMyIp
     {
         [FunctionName("WhatIsMyIP")]
         public async Task Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogger log)

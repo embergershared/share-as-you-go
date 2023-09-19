@@ -1,0 +1,1 @@
+DroppedFile1.txt: Is an empty file dropped here by MFT.

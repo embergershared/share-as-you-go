@@ -1,0 +1,1 @@
+DroppedFile2.txt: Is another file dropped here by MFT. It doesn't have content, but it doesn't matter.
